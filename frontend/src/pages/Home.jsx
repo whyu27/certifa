@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PrismaHero } from '@/components/ui/prisma-hero';
-import ethereumSepoliaBadge from '../assets/ethereum-sepolia-badge.png';
-import ipfsBadge from '../assets/ipfs-badge.svg';
 
 const stackLayers = [
   {
@@ -73,37 +71,15 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('preview');
   const [sampleCertId, setSampleCertId] = useState('CERT-2026-8F92A1');
   const [activeLayer, setActiveLayer] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
 
   return (
-    <div className="space-y-12 pb-12">
+    <div className="pb-12">
       {/* HERO SECTION */}
       <PrismaHero />
 
-      {/* TRUST BADGES BAR (Ref1 style) */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 py-6 border-y border-neutral-200/60 text-xs font-medium text-neutral-500">
-          <div className="flex items-center gap-2">
-            <span className="text-neutral-400">✓</span> 100% Legal & Cryptographic Compliance
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-neutral-400">⚡</span> 80%+ Reduced Certificate Abuse
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-neutral-400">🛡️</span> Zero Wallet Verification
-          </div>
-          <div className="flex items-center gap-2">
-            <img src={ethereumSepoliaBadge} alt="Ethereum" className="w-4 h-4 opacity-70" />
-            <span>Sepolia Network</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <img src={ipfsBadge} alt="IPFS" className="w-4 h-4 opacity-70" />
-            <span>IPFS Storage</span>
-          </div>
-        </div>
-      </section>
-
       {/* WHAT IS CERTIFA (3D Stack Interactive Section) */}
-      <section id="what-is-certifa" className="relative overflow-hidden bg-white py-16 sm:pt-24 lg:pt-32">
+      <section id="what-is-certifa" className="relative overflow-hidden bg-white pt-6 pb-16 sm:pt-10 sm:pb-24-24 lg:pt-12 lg:pb-32 lg:pt-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
 
           {/* TOP HEADER */}
@@ -132,7 +108,7 @@ export default function Home() {
                     <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
                     <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
                   </svg>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
                     What is Certifa?
                   </span>
                 </span>
@@ -148,7 +124,7 @@ export default function Home() {
             </div>
 
             {/* Description */}
-            <p className="max-w-md text-sm leading-relaxed sm:text-base text-neutral-500">
+            <p className="font-sans max-w-md text-sm leading-relaxed sm:text-base text-neutral-500">
               Certifa turns traditional certificates into verifiable digital credentials. Certificates are securely stored, cryptographically secured, and registered on-chain creating a simple and trustworthy way to verify credentials.
             </p>
           </div>
@@ -204,18 +180,21 @@ export default function Home() {
               >
                 {stackLayers.map((layer) => {
                   const isActive = activeLayer === layer.id;
+                  const baseZ = (stackLayers.length - 1 - layer.id) * 28;
+                  const zPosition = isActive ? 115 : baseZ;
+
                   return (
                     <div
                       key={layer.id}
-                      className="absolute"
+                      className="absolute transition-all duration-500 ease-out"
                       style={{
                         left: '50%',
                         top: '50%',
                         width: '78%',
                         height: '58%',
-                        transform: `translate(-50%, -50%) translateZ(${layer.zHeight}px)`,
+                        transform: `translate(-50%, -50%) translateZ(${zPosition}px)`,
                         transformStyle: 'preserve-3d',
-                        zIndex: isActive ? 40 : 10 - layer.id,
+                        zIndex: isActive ? 50 : 10 - layer.id,
                       }}
                     >
                       <button
@@ -223,10 +202,10 @@ export default function Home() {
                         onClick={() => setActiveLayer(layer.id)}
                         className="relative block h-full w-full cursor-pointer rounded-2xl border-2 transition-all duration-300"
                         style={{
-                          backgroundColor: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.65)',
-                          borderColor: isActive ? '#0A0A0A' : 'rgba(0,0,0,0.08)',
+                          backgroundColor: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
+                          borderColor: isActive ? '#0A0A0A' : 'rgba(0,0,0,0.1)',
                           boxShadow: isActive
-                            ? '0 18px 40px rgba(0, 0, 0, 0.12)'
+                            ? '0 22px 45px rgba(0, 0, 0, 0.16)'
                             : '0 2px 8px rgba(0,0,0,0.03)',
                           backdropFilter: 'blur(2px)',
                         }}
@@ -244,11 +223,11 @@ export default function Home() {
                         {/* Header with Icon & Tag */}
                         <div className="absolute inset-4 flex items-start justify-between">
                           <span
-                            className="flex h-8 w-8 items-center justify-center rounded-lg border transition-colors"
+                            className="flex h-8 w-8 items-center justify-center rounded-lg border transition-all duration-300"
                             style={{
-                              backgroundColor: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
-                              borderColor: isActive ? '#0A0A0A' : 'rgba(0,0,0,0.08)',
-                              color: isActive ? '#0A0A0A' : '#9A9A9A',
+                              backgroundColor: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.85)',
+                              borderColor: isActive ? '#0A0A0A' : 'rgba(0,0,0,0.12)',
+                              color: isActive ? '#0A0A0A' : '#737373',
                             }}
                           >
                             {layer.icon}
@@ -256,7 +235,7 @@ export default function Home() {
                           <span
                             className="font-mono text-[9px] uppercase tracking-[0.2em] transition-colors"
                             style={{
-                              color: isActive ? '#0A0A0A' : '#9A9A9A',
+                              color: isActive ? '#0A0A0A' : '#737373',
                               fontWeight: isActive ? 700 : 500,
                             }}
                           >
@@ -335,7 +314,7 @@ export default function Home() {
               <h3 className="font-display text-2xl font-semibold sm:text-3xl text-neutral-900 tracking-tight">
                 {stackLayers[activeLayer].rightTitle}
               </h3>
-              <p className="max-w-xs text-sm leading-relaxed text-neutral-500">
+              <p className="font-sans max-w-xs text-sm leading-relaxed text-neutral-500">
                 {stackLayers[activeLayer].subtitle}
               </p>
               <div className="mt-1 flex items-center gap-1.5">
@@ -361,48 +340,84 @@ export default function Home() {
       </section>
 
       {/* FEATURE SECTION 1 ("How Certifa Works" - Seamless Background with Column Dividers) */}
-      <section id="how-it-works" className="max-w-7xl mx-auto px-5 sm:px-8 py-16 space-y-10">
+      <section id="how-it-works" className="max-w-7xl mx-auto px-5 sm:px-8 py-30 space-y-10">
         {/* Main Title Header */}
-        <div className="max-w-2xl space-y-3">
-          <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
-            How Certifa Works
-          </h2>
-          <p className="text-base sm:text-lg font-semibold text-neutral-700">
+        <div className="max-w-2xl space-y-4">
+          {/* Skewed Badge */}
+          <span
+            className="inline-flex w-fit items-center gap-2 border bg-white/80 px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-md"
+            style={{
+              borderColor: 'rgba(0,0,0,0.08)',
+              color: '#0A0A0A',
+              transform: 'skewX(-14deg)',
+            }}
+          >
+            <span className="inline-flex items-center gap-2" style={{ transform: 'skewX(14deg)' }}>
+              <svg
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="2.2"
+                viewBox="0 0 24 24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-3.5 h-3.5 text-neutral-900"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
+                How Certifa Works
+              </span>
+            </span>
+          </span>
+
+          <h2 className="font-display text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
             From certificate to verification.
-          </p>
-          <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-xl">
+          </h2>
+          <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-xl">
             Certifa turns every certificate into a verifiable digital credential through a simple three-step process.
           </p>
         </div>
 
         {/* Grid Container with Top Horizontal Line & Column Dividers */}
         <div className="relative">
-          {/* Top Horizontal Dividers Line behind Badges */}
-          <div className="absolute top-9 left-0 right-0 h-px border-b border-dashed border-neutral-200 hidden md:block z-0" />
-
           {/* 3 Columns Grid with Vertical Dividers */}
           <div className="grid grid-cols-1 md:grid-cols-3 relative z-10">
-            {/* --- STEP 01 (Highlighted Column Fill) --- */}
-            <div className="flex flex-col justify-between bg-[#fafafa] border-b md:border-b-0 md:border-r border-neutral-200/80 pb-0 md:pb-0">
+            {/* Top Horizontal Connecting Line behind Badges (Desktop/Tablet) */}
+            <div className="absolute top-[38px] sm:top-[46px] left-6 right-6 sm:left-10 sm:right-10 h-px border-b border-dashed border-neutral-300 hidden md:block z-10 pointer-events-none" />
+
+            {/* --- STEP 01 --- */}
+            <div
+              onClick={() => setActiveStep(1)}
+              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 pb-0 md:pb-0 cursor-pointer transition-all duration-300 ${
+                activeStep === 1 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+              }`}
+            >
               {/* Step Badge & Text Block */}
               <div className="p-6 sm:p-8 sm:space-y-6">
                 {/* Badge */}
                 <div>
-                  <span className="inline-block px-4 py-1.5 bg-black text-white text-xs font-semibold shadow-xs">
+                  <span
+                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${
+                      activeStep === 1
+                        ? 'bg-black text-white font-semibold shadow-xs scale-105'
+                        : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
+                    }`}
+                  >
                     Step 1
                   </span>
                   {/* Image Container */}
                   <div className="px-6">
                     <div className="w-full h-48 sm:h-48 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
                       <div className="w-full h-full max-w-[180px] max-h-[115px] flex items-center justify-center relative">
-                        <svg viewBox="0 0 120 100" className="w-full h-full text-neutral-800" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="20" y="22" width="80" height="56" rx="14" fill="#ffffff" stroke="#7b7979ff" strokeWidth="1" />
-                          <circle cx="38" cy="50" r="3" fill="#ffffff" stroke="#7b7979ff" />
-                          <circle cx="48" cy="50" r="3" fill="#ffffff" stroke="#7b7979ff" />
-                          <line x1="33" y1="50" x2="53" y2="50" stroke="#7b7979ff" strokeWidth="2.2" />
-                          <circle cx="76" cy="44" r="3.5" fill="#ffffff" stroke="#7b7979ff" />
-                          <circle cx="84" cy="56" r="3.5" fill="#ffffff" stroke="#7b7979ff" />
-                          <path d="M 60 78 L 60 90" strokeDasharray="2 3" stroke="#a3a3a3" />
+                        <svg viewBox="0 0 120 100" className="w-full h-full transition-all duration-300" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="20" y="22" width="80" height="56" rx="14" fill="#ffffff" stroke={activeStep === 1 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 1 ? "1.6" : "1"} />
+                          <circle cx="38" cy="50" r="3" fill="#ffffff" stroke={activeStep === 1 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 1 ? "1.6" : "1"} />
+                          <circle cx="48" cy="50" r="3" fill="#ffffff" stroke={activeStep === 1 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 1 ? "1.6" : "1"} />
+                          <line x1="33" y1="50" x2="53" y2="50" stroke={activeStep === 1 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 1 ? "2.6" : "2"} />
+                          <circle cx="76" cy="44" r="3.5" fill="#ffffff" stroke={activeStep === 1 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 1 ? "1.6" : "1"} />
+                          <circle cx="84" cy="56" r="3.5" fill="#ffffff" stroke={activeStep === 1 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 1 ? "1.6" : "1"} />
+                          <path d="M 60 78 L 60 90" strokeDasharray="2 3" stroke={activeStep === 1 ? "#0A0A0A" : "#d1d5db"} />
                         </svg>
                       </div>
                     </div>
@@ -410,10 +425,10 @@ export default function Home() {
                 </div>
                 {/* Title & Description */}
                 <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-neutral-900">
+                  <h3 className={`font-display text-lg font-bold transition-colors ${activeStep === 1 ? 'text-neutral-900' : 'text-neutral-700'}`}>
                     Create a certificate.
                   </h3>
-                  <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                     Authorized issuers connect their wallet, upload a certificate, and provide the recipient details.
                   </p>
                 </div>
@@ -421,29 +436,40 @@ export default function Home() {
             </div>
 
             {/* --- STEP 02 --- */}
-            <div className="flex flex-col justify-between bg-[#fafafa] border-b md:border-b-0 md:border-r border-neutral-200/80 pb-6 md:pb-0">
+            <div
+              onClick={() => setActiveStep(2)}
+              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 pb-6 md:pb-0 cursor-pointer transition-all duration-300 ${
+                activeStep === 2 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+              }`}
+            >
               {/* Step Badge & Text Block */}
               <div className="p-6 sm:p-8 space-y-6">
                 {/* Badge */}
                 <div>
-                  <span className="inline-block px-4 py-1.5 bg-[#f0f0f2] text-neutral-700 text-xs font-medium border border-neutral-200/60">
+                  <span
+                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${
+                      activeStep === 2
+                        ? 'bg-black text-white font-semibold shadow-xs scale-105'
+                        : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
+                    }`}
+                  >
                     Step 2
                   </span>
                   {/* Step 2 Visual Container */}
                   <div className="px-6">
                     <div className="w-full h-48 sm:h-48 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
                       <div className="w-full h-full max-w-[180px] max-h-[115px] flex items-center justify-center relative">
-                        <svg viewBox="0 0 120 100" className="w-full h-full text-neutral-800" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                        <svg viewBox="0 0 120 100" className="w-full h-full transition-all duration-300" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                           {/* Certificate Document */}
-                          <path d="M 32 18 L 78 18 L 88 28 L 88 84 L 32 84 Z" fill="#ffffff" stroke="#7b7979ff" strokeWidth="1" />
-                          <path d="M 78 18 L 78 28 L 88 28" stroke="#7b7979ff" strokeWidth="1" />
+                          <path d="M 32 18 L 78 18 L 88 28 L 88 84 L 32 84 Z" fill="#ffffff" stroke={activeStep === 2 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 2 ? "1.6" : "1"} />
+                          <path d="M 78 18 L 78 28 L 88 28" stroke={activeStep === 2 ? "#0A0A0A" : "#9ca3af"} strokeWidth="1" />
                           {/* Document Lines */}
-                          <line x1="42" y1="36" x2="70" y2="36" stroke="#7b7979ff" strokeWidth="1" />
-                          <line x1="42" y1="46" x2="65" y2="46" stroke="#7b7979ff" strokeWidth="1" />
+                          <line x1="42" y1="36" x2="70" y2="36" stroke={activeStep === 2 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 2 ? "1.4" : "1"} />
+                          <line x1="42" y1="46" x2="65" y2="46" stroke={activeStep === 2 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 2 ? "1.4" : "1"} />
                           {/* Mini QR Code */}
-                          <rect x="62" y="60" width="18" height="18" rx="2" fill="#ffffff" stroke="#7b7979ff" strokeWidth="1.2" />
-                          <rect x="66" y="64" width="4" height="4" fill="#7b7979ff" />
-                          <rect x="72" y="70" width="4" height="4" fill="#7b7979ff" />
+                          <rect x="62" y="60" width="18" height="18" rx="2" fill="#ffffff" stroke={activeStep === 2 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 2 ? "1.6" : "1.2"} />
+                          <rect x="66" y="64" width="4" height="4" fill={activeStep === 2 ? "#0A0A0A" : "#9ca3af"} />
+                          <rect x="72" y="70" width="4" height="4" fill={activeStep === 2 ? "#0A0A0A" : "#9ca3af"} />
                         </svg>
                       </div>
                     </div>
@@ -451,10 +477,10 @@ export default function Home() {
                 </div>
                 {/* Title & Description */}
                 <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-neutral-900">
+                  <h3 className={`font-display text-lg font-bold transition-colors ${activeStep === 2 ? 'text-neutral-900' : 'text-neutral-700'}`}>
                     Make it verifiable.
                   </h3>
-                  <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                     Certifa adds a unique QR code, stores the certificate on IPFS, and registers its proof on the blockchain.
                   </p>
                 </div>
@@ -462,23 +488,34 @@ export default function Home() {
             </div>
 
             {/* --- STEP 03 --- */}
-            <div className="flex flex-col justify-between bg-[#fafafa] pb-6 md:pb-0">
+            <div
+              onClick={() => setActiveStep(3)}
+              className={`group flex flex-col justify-between pb-6 md:pb-0 cursor-pointer transition-all duration-300 ${
+                activeStep === 3 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+              }`}
+            >
               {/* Step Badge & Text Block */}
               <div className="p-6 sm:p-8 space-y-6">
                 {/* Badge */}
                 <div>
-                  <span className="inline-block px-4 py-1.5 bg-[#f0f0f2] text-neutral-700 text-xs font-medium border border-neutral-200/60">
+                  <span
+                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${
+                      activeStep === 3
+                        ? 'bg-black text-white font-semibold shadow-xs scale-105'
+                        : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
+                    }`}
+                  >
                     Step 3
                   </span>
                   {/* Step 3 Visual Container */}
                   <div className="px-6">
                     <div className="w-full h-48 sm:h-48 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
                       <div className="w-full h-full max-w-[180px] max-h-[115px] flex items-center justify-center relative">
-                        <svg viewBox="0 0 120 100" className="w-full h-full text-neutral-800" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                        <svg viewBox="0 0 120 100" className="w-full h-full transition-all duration-300" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                           {/* Verification Shield */}
-                          <path d="M 60 20 L 84 30 V 54 C 84 70 60 82 60 82 C 60 82 36 70 36 54 V 30 Z" fill="#ffffff" stroke="#7b7979ff" strokeWidth="1" />
+                          <path d="M 60 20 L 84 30 V 54 C 84 70 60 82 60 82 C 60 82 36 70 36 54 V 30 Z" fill="#ffffff" stroke={activeStep === 3 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 3 ? "1.6" : "1"} />
                           {/* Verified Checkmark */}
-                          <path d="M 48 50 L 56 58 L 72 42" stroke="#7b7979ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M 48 50 L 56 58 L 72 42" stroke={activeStep === 3 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 3 ? "2.6" : "1.8"} strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </div>
                     </div>
@@ -486,10 +523,10 @@ export default function Home() {
                 </div>
                 {/* Title & Description */}
                 <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-neutral-900">
+                  <h3 className={`font-display text-lg font-bold transition-colors ${activeStep === 3 ? 'text-neutral-900' : 'text-neutral-700'}`}>
                     Verify in seconds.
                   </h3>
-                  <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                     Scan the QR code or enter the Certificate ID to verify the certificate. No account. No wallet required.
                   </p>
                 </div>
@@ -501,16 +538,42 @@ export default function Home() {
       </section>
 
       {/* FEATURE SECTION 2 ("Why Certifa?" - Split List Layout matching why-choose-us image) */}
-      <section id="why-certifa" className="w-full bg-white py-16">
+      <section id="why-certifa" className="w-full bg-white py-30">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 space-y-10">
-          <div className="max-w-2xl space-y-3">
-            <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
-              Why Certifa?
-            </h2>
-            <p className="text-base sm:text-lg font-semibold text-neutral-700">
+          <div className="max-w-2xl space-y-4">
+            {/* Skewed Badge */}
+            <span
+              className="inline-flex w-fit items-center gap-2 border bg-white/80 px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-md"
+              style={{
+                borderColor: 'rgba(0,0,0,0.08)',
+                color: '#0A0A0A',
+                transform: 'skewX(-14deg)',
+              }}
+            >
+              <span className="inline-flex items-center gap-2" style={{ transform: 'skewX(14deg)' }}>
+                <svg
+                  stroke="currentColor"
+                  fill="none"
+                  strokeWidth="2.2"
+                  viewBox="0 0 24 24"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-3.5 h-3.5 text-neutral-900"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="M12 8v4" />
+                  <path d="M12 16h.01" />
+                </svg>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
+                  Why Certifa?
+                </span>
+              </span>
+            </span>
+
+            <h2 className="font-display text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
               Because a certificate should be more than just a PDF.
-            </p>
-            <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-xl">
+            </h2>
+            <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-xl">
               Certifa adds verifiable proof to every certificate, making credentials easier to issue, share, and verify.
             </p>
           </div>
@@ -523,7 +586,7 @@ export default function Home() {
                 {/* Matrix Binary Pattern Background */}
                 <div className="pointer-events-none absolute inset-0 flex flex-col justify-between px-5 py-6 font-mono text-[11px] leading-[1.35] tracking-[0.05em] text-[#C9C9C0]" aria-hidden="true">
                   <span className="block whitespace-nowrap opacity-50">1001100100100100101001000100100100100110010100100100100</span>
-                  <span className="block whitespace-nowrap opacity-50">0101010010010111010010010010010100100010010100101010101</span>
+                  <span className="block whitespace-nowrap opacity-50">01010100100101110100100100100101001000100101001001010101</span>
                   <span className="block whitespace-nowrap opacity-50">1011010010010110100101010100111010010010010100101010010</span>
                   <span className="block whitespace-nowrap opacity-50">0010010010010100100110100011101001001010110100100001001</span>
                   <span className="block whitespace-nowrap opacity-50">1010011010010100011010001001110100010100010010010110001</span>
@@ -585,7 +648,7 @@ export default function Home() {
             <div className="lg:col-span-7 flex flex-col">
               {/* Top Main Heading */}
               <div className="border-t border-neutral-200 pt-6 pb-8">
-                <h2 className="text-2xl sm:text-4xl font-bold text-neutral-900 tracking-tight leading-snug">
+                <h2 className="font-display text-2xl sm:text-4xl font-bold text-neutral-900 tracking-tight leading-snug">
                   Built for certificates people can trust.
                 </h2>
               </div>
@@ -596,13 +659,13 @@ export default function Home() {
                 <div className="border-t border-neutral-200 py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
                   <div className="sm:col-span-5 space-y-1">
                     <span className="text-xs font-mono font-medium text-neutral-400 block">01</span>
-                    <span className="text-xs font-semibold text-neutral-500 block uppercase tracking-wider">Tamper-Evident</span>
-                    <h4 className="text-base sm:text-lg font-bold text-neutral-900 leading-snug">
+                    <span className="text-xs font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Tamper-Evident</span>
+                    <h4 className="font-display text-base sm:text-lg font-bold text-neutral-900 leading-snug">
                       Protect certificate integrity
                     </h4>
                   </div>
                   <div className="sm:col-span-7 pt-1">
-                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+                    <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                       Each certificate is registered with a unique cryptographic hash, making unauthorized changes detectable.
                     </p>
                   </div>
@@ -612,13 +675,13 @@ export default function Home() {
                 <div className="border-t border-neutral-200 py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
                   <div className="sm:col-span-5 space-y-1">
                     <span className="text-xs font-mono font-medium text-neutral-400 block">02</span>
-                    <span className="text-xs font-semibold text-neutral-500 block uppercase tracking-wider">Instant Verification</span>
-                    <h4 className="text-base sm:text-lg font-bold text-neutral-900 leading-snug">
+                    <span className="text-xs font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Instant Verification</span>
+                    <h4 className="font-display text-base sm:text-lg font-bold text-neutral-900 leading-snug">
                       Verify in seconds
                     </h4>
                   </div>
                   <div className="sm:col-span-7 pt-1">
-                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+                    <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                       Scan a QR code or enter a Certificate ID to instantly verify a certificate without creating an account.
                     </p>
                   </div>
@@ -628,13 +691,13 @@ export default function Home() {
                 <div className="border-t border-neutral-200 py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
                   <div className="sm:col-span-5 space-y-1">
                     <span className="text-xs font-mono font-medium text-neutral-400 block">03</span>
-                    <span className="text-xs font-semibold text-neutral-500 block uppercase tracking-wider">Blockchain-Backed</span>
-                    <h4 className="text-base sm:text-lg font-bold text-neutral-900 leading-snug">
+                    <span className="text-xs font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Blockchain-Backed</span>
+                    <h4 className="font-display text-base sm:text-lg font-bold text-neutral-900 leading-snug">
                       A record you can verify
                     </h4>
                   </div>
                   <div className="sm:col-span-7 pt-1">
-                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+                    <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                       Certificate records are anchored on the blockchain, providing a transparent and independently verifiable proof.
                     </p>
                   </div>
@@ -644,13 +707,13 @@ export default function Home() {
                 <div className="border-t border-neutral-200 py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
                   <div className="sm:col-span-5 space-y-1">
                     <span className="text-xs font-mono font-medium text-neutral-400 block">04</span>
-                    <span className="text-xs font-semibold text-neutral-500 block uppercase tracking-wider">Simple by Design</span>
-                    <h4 className="text-base sm:text-lg font-bold text-neutral-900 leading-snug">
+                    <span className="text-xs font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Simple by Design</span>
+                    <h4 className="font-display text-base sm:text-lg font-bold text-neutral-900 leading-snug">
                       No friction for verification
                     </h4>
                   </div>
                   <div className="sm:col-span-7 pt-1">
-                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+                    <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                       Issuers can create verifiable certificates through a simple workflow, while anyone can verify them without a wallet.
                     </p>
                   </div>
@@ -666,16 +729,16 @@ export default function Home() {
       </section>
 
       {/* BOTTOM CTA BANNER ("How You Take Notes?" equivalent) */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="max-w-6xl mx-auto px-4 pt-16 sm:px-6">
         <div className="bg-neutral-100 p-8 sm:p-12 border border-neutral-200/80 text-center space-y-6 relative overflow-hidden">
-          <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight">
             How You Issue Certificates?
           </h2>
-          <p className="text-sm text-neutral-600 max-w-lg mx-auto leading-relaxed">
+          <p className="font-sans text-sm text-neutral-600 max-w-lg mx-auto leading-relaxed">
             Start issuing tamper-proof certificates on Ethereum Sepolia. Connect your wallet and manage credentials effortlessly.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 font-sans">
             <Link
               to="/issue"
               className="px-6 py-3 bg-neutral-900 text-white font-medium text-xs sm:text-sm hover:bg-neutral-800 transition shadow-sm"
