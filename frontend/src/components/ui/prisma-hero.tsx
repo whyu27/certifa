@@ -80,9 +80,9 @@ export const PrismaHero = ({
         </div>
 
         {/* Bottom Background Image (hero-section.jpg) with Mist/Cloud Fog Effect */}
-        <div className="relative w-full h-[180px] sm:h-[250px] md:h-[310px] overflow-hidden">
+        <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] overflow-hidden">
           {/* Top Gradient Blend */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#f4f4f5] via-[#f4f4f5]/20 to-transparent z-10 pointer-events-none h-16" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f4f4f5] via-[#f4f4f5]/20 to-transparent z-10 pointer-events-none h-20" />
 
           <img
             src={heroBg}

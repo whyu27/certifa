@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { PrismaHero } from '@/components/ui/prisma-hero';
 
 const stackLayers = [
@@ -583,8 +584,13 @@ export default function Home() {
             {/* LEFT COLUMN: Balanced Aspect Ratio Visual */}
             <div className="lg:col-span-5 flex flex-col justify-between">
               <div className="relative mx-auto flex aspect-[4/5] min-h-[460px] w-full max-w-[400px] items-center justify-center overflow-hidden rounded-3xl border border-black/10 bg-[#FAFAF7] sm:max-w-[440px] lg:ml-0 lg:mr-auto">
-                {/* Matrix Binary Pattern Background */}
-                <div className="pointer-events-none absolute inset-0 flex flex-col justify-between px-5 py-6 font-mono text-[11px] leading-[1.35] tracking-[0.05em] text-[#C9C9C0]" aria-hidden="true">
+                {/* Matrix Binary Pattern Background with subtle opacity animation */}
+                <motion.div
+                  className="pointer-events-none absolute inset-0 flex flex-col justify-between px-5 py-6 font-mono text-[11px] leading-[1.35] tracking-[0.05em] text-[#C9C9C0]"
+                  animate={{ opacity: [0.35, 0.65, 0.35] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                  aria-hidden="true"
+                >
                   <span className="block whitespace-nowrap opacity-50">1001100100100100101001000100100100100110010100100100100</span>
                   <span className="block whitespace-nowrap opacity-50">01010100100101110100100100100101001000100101001001010101</span>
                   <span className="block whitespace-nowrap opacity-50">1011010010010110100101010100111010010010010100101010010</span>
@@ -593,16 +599,55 @@ export default function Home() {
                   <span className="block whitespace-nowrap opacity-50">0111001010101010100100010010001001000111010010101100100</span>
                   <span className="block whitespace-nowrap opacity-50">0100110100100100011010100100101110010100100100101010100</span>
                   <span className="block whitespace-nowrap opacity-50">1100101010010100100100110100100100100100100100101100100</span>
-                </div>
+                </motion.div>
 
-                {/* Scan Light Glow Bar */}
-                <span className="pointer-events-none absolute inset-x-6 h-12 rounded-full bg-gradient-to-b from-black/0 via-black/10 to-black/0 blur-md opacity-40" aria-hidden="true" />
+                {/* Scanning Laser Beam Effect */}
+                <motion.div
+                  className="pointer-events-none absolute inset-x-4 h-16 rounded-full bg-gradient-to-b from-black/0 via-black/10 to-black/0 blur-md z-20"
+                  animate={{
+                    top: ['8%', '78%', '8%'],
+                    opacity: [0.3, 0.7, 0.3],
+                  }}
+                  transition={{
+                    duration: 4.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  aria-hidden="true"
+                />
+                <motion.div
+                  className="pointer-events-none absolute inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-neutral-900/30 to-transparent z-20"
+                  animate={{
+                    top: ['10%', '80%', '10%'],
+                    opacity: [0.2, 0.6, 0.2],
+                  }}
+                  transition={{
+                    duration: 4.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  aria-hidden="true"
+                />
 
-                {/* Isometric Certificate Verification SVG */}
-                <svg viewBox="0 0 400 400" width="82%" height="82%" fill="none" className="relative" aria-hidden="true">
+                {/* Isometric Certificate Verification SVG with Floating Parallax */}
+                <svg viewBox="0 0 400 400" width="82%" height="82%" fill="none" className="relative z-10" aria-hidden="true">
                   <title>Certifa tamper-evident verification illustration</title>
-                  <g stroke="#0A0A0A" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                    {/* Background Paper Document */}
+
+                  {/* Floating Certificate Paper Document */}
+                  <motion.g
+                    stroke="#0A0A0A"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    animate={{
+                      y: [0, -7, 0],
+                    }}
+                    transition={{
+                      duration: 4.8,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                  >
                     <g transform="translate(130, 45) scale(2.2)">
                       <path d="M 32 18 L 78 18 L 88 28 L 88 84 L 32 84 Z" fill="#FFFFFF" stroke="#0A0A0A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M 78 18 L 78 28 L 88 28" fill="#FFFFFF" stroke="#0A0A0A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -613,15 +658,38 @@ export default function Home() {
                     </g>
 
                     {/* Dashed Ghost Block */}
-                    <g stroke="#0A0A0A" strokeDasharray="4 4" strokeWidth="1.4" opacity="0.7">
+                    <motion.g
+                      stroke="#0A0A0A"
+                      strokeDasharray="4 4"
+                      strokeWidth="1.4"
+                      animate={{
+                        opacity: [0.45, 0.8, 0.45],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }}
+                    >
                       <path d="M 110 180 L 150 180 L 150 220 L 110 220 Z" />
                       <path d="M 150 180 L 165 165 L 165 205 L 150 220" />
                       <path d="M 110 180 L 125 165 L 165 165" />
-                    </g>
-                  </g>
+                    </motion.g>
+                  </motion.g>
 
-                  {/* Foreground Verified Contract Plate */}
-                  <g style={{ transformOrigin: '170px 257px' }}>
+                  {/* Foreground Verified Contract Plate with Floating Parallax */}
+                  <motion.g
+                    style={{ transformOrigin: '170px 257px' }}
+                    animate={{
+                      y: [0, 6, 0],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      delay: 0.2,
+                    }}
+                  >
                     <path d="M 95 195 L 215 195 L 245 225 L 245 320 L 125 320 L 95 290 Z" fill="none" stroke="#0A0A0A" strokeWidth="9" strokeLinejoin="round" opacity="0.1" style={{ filter: 'blur(4px)' }} />
                     <path d="M 95 195 L 215 195 L 245 225 L 245 320 L 125 320 L 95 290 Z" fill="#FAFAF7" stroke="#0A0A0A" strokeWidth="3" strokeLinejoin="round" strokeDasharray="520" strokeDashoffset="0" />
                     <path d="M 215 195 L 215 225 L 245 225" stroke="#0A0A0A" strokeWidth="3" fill="none" strokeLinejoin="round" strokeDasharray="520" strokeDashoffset="0" />
@@ -630,15 +698,15 @@ export default function Home() {
                     <circle cx="180" cy="260" r="20" stroke="#0A0A0A" strokeWidth="2" fill="none" strokeDasharray="130" strokeDashoffset="0" />
                     <path d="M 171 261 L 178 268 L 190 254" stroke="#0A0A0A" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" strokeDasharray="40" strokeDashoffset="0" />
                     <text x="185" y="305" textAnchor="middle" fontSize="13" fontWeight="700" fill="#0A0A0A" letterSpacing="0.06em">CONTRACT</text>
-                  </g>
+                  </motion.g>
                 </svg>
 
                 {/* Bottom Labels */}
-                <div className="absolute bottom-4 left-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+                <div className="absolute bottom-4 left-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 z-20">
                   <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" />
                   Tamper-Proof
                 </div>
-                <div className="absolute bottom-4 right-5 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+                <div className="absolute bottom-4 right-5 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 z-20">
                   Valid · On-Chain
                 </div>
               </div>
