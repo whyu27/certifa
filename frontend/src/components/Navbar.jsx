@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShieldCheck, Wallet, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Wallet, CheckCircle2, ChevronRight } from 'lucide-react';
+import certifaLogo from '../assets/certifa-logo.png';
 
 export default function Navbar({ isWalletConnected, setIsWalletConnected, isAuthorized, setIsAuthorized }) {
   const location = useLocation();
   const [showWalletModal, setShowWalletModal] = useState(false);
 
-  const activeClass = (path) => 
-    location.pathname === path 
-      ? 'bg-neutral-900 text-white shadow-sm' 
+  const activeClass = (path) =>
+    location.pathname === path
+      ? 'bg-neutral-900 text-white shadow-sm'
       : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/80';
 
   return (
@@ -17,9 +18,7 @@ export default function Navbar({ isWalletConnected, setIsWalletConnected, isAuth
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-neutral-900 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform duration-200">
-              <ShieldCheck className="w-5 h-5 text-emerald-400" />
-            </div>
+            <img src={certifaLogo} alt="Certifa Logo" className="w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-200" />
             <div className="flex flex-col">
               <span className="font-bold text-lg leading-none text-neutral-900 tracking-tight">Certifa</span>
               <span className="text-[10px] font-medium text-neutral-500 tracking-wide uppercase">Blockchain Registry</span>
@@ -27,22 +26,22 @@ export default function Navbar({ isWalletConnected, setIsWalletConnected, isAuth
           </Link>
 
           {/* Nav Links */}
-          <nav className="flex items-center gap-1 bg-neutral-100/70 p-1 rounded-full border border-neutral-200/60">
+          <nav className="flex items-center gap-1 bg-neutral-100/70 p-1 border border-neutral-200/60">
             <Link
               to="/"
-              className={`px-4 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 ${activeClass('/')}`}
+              className={`px-4 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 ${activeClass('/')}`}
             >
               Home
             </Link>
             <Link
               to="/issue"
-              className={`px-4 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 ${activeClass('/issue')}`}
+              className={`px-4 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 ${activeClass('/issue')}`}
             >
               Issue Certificate
             </Link>
             <Link
               to="/verify"
-              className={`px-4 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 ${activeClass('/verify')}`}
+              className={`px-4 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 ${activeClass('/verify')}`}
             >
               Verify
             </Link>
@@ -53,7 +52,7 @@ export default function Navbar({ isWalletConnected, setIsWalletConnected, isAuth
             {!isWalletConnected ? (
               <button
                 onClick={() => setShowWalletModal(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium text-white bg-neutral-900 hover:bg-neutral-800 rounded-full transition-all duration-200 shadow-sm active:scale-95"
+                className="inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium text-white bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 shadow-sm active:scale-95"
               >
                 <Wallet className="w-4 h-4" />
                 Connect Wallet
@@ -89,7 +88,7 @@ export default function Navbar({ isWalletConnected, setIsWalletConnected, isAuth
                 ✕
               </button>
             </div>
-            
+
             <p className="text-xs text-neutral-500 mb-6">
               Simulasikan koneksi Web3 wallet dan status verifikasi issuer on-chain (Ethereum Sepolia).
             </p>
@@ -102,11 +101,10 @@ export default function Navbar({ isWalletConnected, setIsWalletConnected, isAuth
                 </div>
                 <button
                   onClick={() => setIsWalletConnected(!isWalletConnected)}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-all ${
-                    isWalletConnected 
-                      ? 'bg-rose-50 text-rose-600 border border-rose-200 hover:bg-rose-100' 
-                      : 'bg-neutral-900 text-white hover:bg-neutral-800'
-                  }`}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-all ${isWalletConnected
+                    ? 'bg-rose-50 text-rose-600 border border-rose-200 hover:bg-rose-100'
+                    : 'bg-neutral-900 text-white hover:bg-neutral-800'
+                    }`}
                 >
                   {isWalletConnected ? 'Disconnect' : 'Connect'}
                 </button>
@@ -122,11 +120,10 @@ export default function Navbar({ isWalletConnected, setIsWalletConnected, isAuth
                   </div>
                   <button
                     onClick={() => setIsAuthorized(!isAuthorized)}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-all ${
-                      isAuthorized 
-                        ? 'bg-amber-50 text-amber-700 border border-amber-200' 
-                        : 'bg-emerald-600 text-white hover:bg-emerald-700'
-                    }`}
+                    className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-all ${isAuthorized
+                      ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                      : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                      }`}
                   >
                     {isAuthorized ? 'Set Unauthorized' : 'Authorize'}
                   </button>

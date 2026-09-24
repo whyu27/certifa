@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import ethereumSepoliaBadge from '../assets/ethereum-sepolia-badge.png';
 import ipfsBadge from '../assets/ipfs-badge.svg';
-import { ShieldCheck, ExternalLink, Code } from 'lucide-react';
+import certifaLogo from '../assets/certifa-logo.png';
+import { ExternalLink, Code } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -11,9 +12,7 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-4 text-left">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-neutral-900 flex items-center justify-center text-white">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              </div>
+              <img src={certifaLogo} alt="Certifa Logo" className="w-7 h-7 object-contain" />
               <span className="font-bold text-lg text-neutral-900 tracking-tight">Certifa</span>
             </div>
             <p className="text-xs text-neutral-500 max-w-sm leading-relaxed">
