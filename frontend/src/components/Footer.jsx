@@ -40,6 +40,7 @@ export default function Footer() {
               <li><Link to="/issue" className="text-neutral-500 hover:text-neutral-900 transition">Issue Certificate</Link></li>
               <li><Link to="/verify" className="text-neutral-500 hover:text-neutral-900 transition">Public Verification</Link></li>
               <li><a href="#how-it-works" className="text-neutral-500 hover:text-neutral-900 transition">How It Works</a></li>
+              <li><a href="#technologies" className="text-neutral-500 hover:text-neutral-900 transition">Technologies</a></li>
             </ul>
           </div>
 

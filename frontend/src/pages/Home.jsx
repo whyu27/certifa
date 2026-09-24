@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PrismaHero } from '@/components/ui/prisma-hero';
+import TechnologiesSection from '../components/TechnologiesSection';
 
 const stackLayers = [
   {
@@ -390,20 +391,18 @@ export default function Home() {
             {/* --- STEP 01 --- */}
             <div
               onClick={() => setActiveStep(1)}
-              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 pb-0 md:pb-0 cursor-pointer transition-all duration-300 ${
-                activeStep === 1 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
-              }`}
+              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 pb-0 md:pb-0 cursor-pointer transition-all duration-300 ${activeStep === 1 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+                }`}
             >
               {/* Step Badge & Text Block */}
               <div className="p-6 sm:p-8 sm:space-y-6">
                 {/* Badge */}
                 <div>
                   <span
-                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${
-                      activeStep === 1
+                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 1
                         ? 'bg-black text-white font-semibold shadow-xs scale-105'
                         : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
-                    }`}
+                      }`}
                   >
                     Step 1
                   </span>
@@ -439,20 +438,18 @@ export default function Home() {
             {/* --- STEP 02 --- */}
             <div
               onClick={() => setActiveStep(2)}
-              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 pb-6 md:pb-0 cursor-pointer transition-all duration-300 ${
-                activeStep === 2 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
-              }`}
+              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 pb-6 md:pb-0 cursor-pointer transition-all duration-300 ${activeStep === 2 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+                }`}
             >
               {/* Step Badge & Text Block */}
               <div className="p-6 sm:p-8 space-y-6">
                 {/* Badge */}
                 <div>
                   <span
-                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${
-                      activeStep === 2
+                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 2
                         ? 'bg-black text-white font-semibold shadow-xs scale-105'
                         : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
-                    }`}
+                      }`}
                   >
                     Step 2
                   </span>
@@ -491,20 +488,18 @@ export default function Home() {
             {/* --- STEP 03 --- */}
             <div
               onClick={() => setActiveStep(3)}
-              className={`group flex flex-col justify-between pb-6 md:pb-0 cursor-pointer transition-all duration-300 ${
-                activeStep === 3 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
-              }`}
+              className={`group flex flex-col justify-between pb-6 md:pb-0 cursor-pointer transition-all duration-300 ${activeStep === 3 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+                }`}
             >
               {/* Step Badge & Text Block */}
               <div className="p-6 sm:p-8 space-y-6">
                 {/* Badge */}
                 <div>
                   <span
-                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${
-                      activeStep === 3
+                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 3
                         ? 'bg-black text-white font-semibold shadow-xs scale-105'
                         : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
-                    }`}
+                      }`}
                   >
                     Step 3
                   </span>
@@ -795,6 +790,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* TECHNOLOGIES SECTION (Interactive Arc Visualization) */}
+      <TechnologiesSection />
 
       {/* BOTTOM CTA BANNER ("How You Take Notes?" equivalent) */}
       <section className="max-w-6xl mx-auto px-4 pt-16 sm:px-6">
