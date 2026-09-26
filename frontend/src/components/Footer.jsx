@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import ethereumSepoliaBadge from '../assets/ethereum-sepolia-badge.png';
 import ipfsBadge from '../assets/ipfs-badge.svg';
-import certifaLogo from '../assets/certifa-logo.png';
+import certifaLogo from '../assets/logo-certifa.svg';
 import { ExternalLink, Code } from 'lucide-react';
 
 export default function Footer() {

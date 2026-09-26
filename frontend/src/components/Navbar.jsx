@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Wallet, CheckCircle2, ChevronRight } from 'lucide-react';
-import certifaLogo from '../assets/certifa-logo.png';
+import certifaLogo from '../assets/logo-certifa.svg';
 
 export default function Navbar({ isWalletConnected, setIsWalletConnected, isAuthorized, setIsAuthorized }) {
   const location = useLocation();

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Layers, Cpu, ShieldCheck, Database, Code2, Globe } from 'lucide-react';
 
 // Import Assets
-import certifaLogo from '../assets/certifa-logo.png';
+import certifaLogo from '../assets/logo-certifa.svg';
 import ethereumSvg from '../assets/tech/ethereum.svg';
 import soliditySvg from '../assets/tech/solidity.svg';
 import ipfsSvg from '../assets/tech/ipfs.svg';
