@@ -189,7 +189,13 @@ export default function TechnologiesSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
 
         {/* SECTION HEADER */}
-        <div className="flex flex-col items-start max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-start max-w-3xl"
+        >
           {/* Skewed Badge with Certifa Logo */}
           <span
             className="inline-flex w-fit items-center gap-2 border bg-white px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
@@ -228,10 +234,14 @@ export default function TechnologiesSection() {
           <p className="mt-5 max-w-2xl text-sm leading-relaxed sm:text-base text-neutral-500 font-sans">
             Every node on the arc represents a foundational pillar of Certifa. From cryptographic smart contracts to distributed IPFS storage, explore how each technology secures authentic credentials.
           </p>
-        </div>
+        </motion.div>
 
         {/* INTERACTIVE ARC DIAGRAM STAGE */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           className="relative mx-auto mt-10 sm:mt-14 w-full max-w-5xl aspect-[2/1] min-h-[360px] sm:min-h-[460px] lg:min-h-[520px]"
@@ -415,7 +425,7 @@ export default function TechnologiesSection() {
               Certifa Core
             </span>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

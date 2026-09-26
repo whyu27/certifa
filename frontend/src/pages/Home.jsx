@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PrismaHero } from '@/components/ui/prisma-hero';
 import TechnologiesSection from '../components/TechnologiesSection';
+import certifaLogo from '../assets/logo-certifa.svg';
 
 const stackLayers = [
   {
@@ -70,10 +71,23 @@ const stackLayers = [
 ];
 
 export default function Home() {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState('preview');
   const [sampleCertId, setSampleCertId] = useState('CERT-2026-8F92A1');
   const [activeLayer, setActiveLayer] = useState(0);
   const [activeStep, setActiveStep] = useState(1);
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location.hash]);
 
   return (
     <div className="pb-12">
@@ -85,11 +99,17 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
 
           {/* TOP HEADER */}
-          <div className="grid gap-8 sm:gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="grid gap-8 sm:gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end"
+          >
             <div>
-              {/* Skewed Badge */}
+              {/* Skewed Badge with Certifa Logo */}
               <span
-                className="inline-flex w-fit items-center gap-2 border bg-white/80 px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-md"
+                className="inline-flex w-fit items-center gap-2 border bg-white px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                 style={{
                   borderColor: 'rgba(0,0,0,0.08)',
                   color: '#0A0A0A',
@@ -97,19 +117,11 @@ export default function Home() {
                 }}
               >
                 <span className="inline-flex items-center gap-2" style={{ transform: 'skewX(14deg)' }}>
-                  <svg
-                    stroke="currentColor"
-                    fill="none"
-                    strokeWidth="2.2"
-                    viewBox="0 0 24 24"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-3.5 h-3.5 text-neutral-900"
-                  >
-                    <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
-                    <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
-                    <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
-                  </svg>
+                  <img
+                    src={certifaLogo}
+                    alt="Certifa Logo"
+                    className="h-4 w-4 object-contain"
+                  />
                   <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
                     What is Certifa?
                   </span>
@@ -129,10 +141,16 @@ export default function Home() {
             <p className="font-sans max-w-md text-sm leading-relaxed sm:text-base text-neutral-500">
               Certifa turns traditional certificates into verifiable digital credentials. Certificates are securely stored, cryptographically secured, and registered on-chain creating a simple and trustworthy way to verify credentials.
             </p>
-          </div>
+          </motion.div>
 
           {/* 3D INTERACTIVE STACK SECTION */}
-          <div className="mt-12 grid items-center gap-8 sm:mt-16 lg:mt-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)_minmax(0,0.9fr)] lg:gap-14">
+          <motion.div
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-12 grid items-center gap-8 sm:mt-16 lg:mt-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)_minmax(0,0.9fr)] lg:gap-14"
+          >
 
             {/* LEFT LIST (Desktop) */}
             <ul className="relative z-10 hidden flex-col gap-7 self-center lg:flex">
@@ -336,7 +354,7 @@ export default function Home() {
               </div>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
       </section>
@@ -344,10 +362,16 @@ export default function Home() {
       {/* FEATURE SECTION 1 ("How Certifa Works" - Seamless Background with Column Dividers) */}
       <section id="how-it-works" className="max-w-7xl mx-auto px-5 sm:px-8 py-30 space-y-10">
         {/* Main Title Header */}
-        <div className="max-w-2xl space-y-4">
-          {/* Skewed Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl space-y-4"
+        >
+          {/* Skewed Badge with Certifa Logo */}
           <span
-            className="inline-flex w-fit items-center gap-2 border bg-white/80 px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-md"
+            className="inline-flex w-fit items-center gap-2 border bg-white px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
             style={{
               borderColor: 'rgba(0,0,0,0.08)',
               color: '#0A0A0A',
@@ -355,18 +379,11 @@ export default function Home() {
             }}
           >
             <span className="inline-flex items-center gap-2" style={{ transform: 'skewX(14deg)' }}>
-              <svg
-                stroke="currentColor"
-                fill="none"
-                strokeWidth="2.2"
-                viewBox="0 0 24 24"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-3.5 h-3.5 text-neutral-900"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
+              <img
+                src={certifaLogo}
+                alt="Certifa Logo"
+                className="h-4 w-4 object-contain"
+              />
               <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
                 How Certifa Works
               </span>
@@ -379,10 +396,16 @@ export default function Home() {
           <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-xl">
             Certifa turns every certificate into a verifiable digital credential through a simple three-step process.
           </p>
-        </div>
+        </motion.div>
 
         {/* Grid Container with Top Horizontal Line & Column Dividers */}
-        <div className="relative">
+        <motion.div
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative"
+        >
           {/* 3 Columns Grid with Vertical Dividers */}
           <div className="grid grid-cols-1 md:grid-cols-3 relative z-10">
             {/* Top Horizontal Connecting Line behind Badges (Desktop/Tablet) */}
@@ -530,16 +553,22 @@ export default function Home() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* FEATURE SECTION 2 ("Why Certifa?" - Split List Layout matching why-choose-us image) */}
       <section id="why-certifa" className="w-full bg-white py-30">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 space-y-10">
-          <div className="max-w-2xl space-y-4">
-            {/* Skewed Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-2xl space-y-4"
+          >
+            {/* Skewed Badge with Certifa Logo */}
             <span
-              className="inline-flex w-fit items-center gap-2 border bg-white/80 px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-md"
+              className="inline-flex w-fit items-center gap-2 border bg-white px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               style={{
                 borderColor: 'rgba(0,0,0,0.08)',
                 color: '#0A0A0A',
@@ -547,19 +576,11 @@ export default function Home() {
               }}
             >
               <span className="inline-flex items-center gap-2" style={{ transform: 'skewX(14deg)' }}>
-                <svg
-                  stroke="currentColor"
-                  fill="none"
-                  strokeWidth="2.2"
-                  viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-3.5 h-3.5 text-neutral-900"
-                >
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <path d="M12 8v4" />
-                  <path d="M12 16h.01" />
-                </svg>
+                <img
+                  src={certifaLogo}
+                  alt="Certifa Logo"
+                  className="h-4 w-4 object-contain"
+                />
                 <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
                   Why Certifa?
                 </span>
@@ -572,12 +593,18 @@ export default function Home() {
             <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-xl">
               Certifa adds verifiable proof to every certificate, making credentials easier to issue, share, and verify.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
             {/* LEFT COLUMN: Balanced Aspect Ratio Visual */}
-            <div className="lg:col-span-5 flex flex-col justify-between">
+            <motion.div
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-5 flex flex-col justify-between"
+            >
               <div className="relative mx-auto flex aspect-[4/5] min-h-[460px] w-full max-w-[400px] items-center justify-center overflow-hidden rounded-3xl border border-black/10 bg-[#FAFAF7] sm:max-w-[440px] lg:ml-0 lg:mr-auto">
                 {/* Matrix Binary Pattern Background with subtle opacity animation */}
                 <motion.div
@@ -705,10 +732,16 @@ export default function Home() {
                   Valid · On-Chain
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* RIGHT COLUMN: Top Main Heading + 4 List Items */}
-            <div className="lg:col-span-7 flex flex-col">
+            <motion.div
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-7 flex flex-col"
+            >
               {/* Top Main Heading */}
               <div className="border-t border-neutral-200 pt-6 pb-8">
                 <h2 className="font-display text-2xl sm:text-4xl font-bold text-neutral-900 tracking-tight leading-snug">
@@ -785,7 +818,7 @@ export default function Home() {
                 {/* Bottom Border */}
                 <div className="border-t border-neutral-200" />
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -795,7 +828,13 @@ export default function Home() {
       <TechnologiesSection />
 
       {/* BOTTOM CTA BANNER ("How You Take Notes?" equivalent) */}
-      <section className="max-w-6xl mx-auto px-4 pt-16 sm:px-6">
+      <motion.section
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-6xl mx-auto px-4 pt-16 sm:px-6"
+      >
         <div className="bg-neutral-100 p-8 sm:p-12 border border-neutral-200/80 text-center space-y-6 relative overflow-hidden">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight">
             How You Issue Certificates?
@@ -819,7 +858,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
