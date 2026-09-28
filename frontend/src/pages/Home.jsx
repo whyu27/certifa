@@ -186,13 +186,11 @@ const END_ANGLE = 345;
 
 export default function Home() {
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState('preview');
-  const [sampleCertId, setSampleCertId] = useState('CERT-2026-8F92A1');
   const [activeLayer, setActiveLayer] = useState(0);
   const [activeStep, setActiveStep] = useState(1);
-  const [activeTechCategory, setActiveTechCategory] = useState('all');
   const [selectedTechId, setSelectedTechId] = useState('ethereum');
   const [isTechPaused, setIsTechPaused] = useState(false);
+  const activeTechCategory = 'all';
 
   // Compute node coordinates along the arc
   const arcNodes = useMemo(() => {
@@ -227,7 +225,7 @@ export default function Home() {
     return arcNodes.filter((t) => t.category === activeTechCategory);
   }, [activeTechCategory, arcNodes]);
 
-  // Auto-switch technology logo every 5 seconds (5000ms)
+  // Auto-switch technology logo every 3 seconds (3000ms)
   useEffect(() => {
     if (isTechPaused || activeTechList.length === 0) return;
 
@@ -237,7 +235,7 @@ export default function Home() {
         const nextIndex = (currentIndex + 1) % activeTechList.length;
         return activeTechList[nextIndex].id;
       });
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [isTechPaused, activeTechList]);
@@ -588,8 +586,8 @@ export default function Home() {
                 <div>
                   <span
                     className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 1
-                        ? 'bg-black text-white font-semibold shadow-xs scale-105'
-                        : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
+                      ? 'bg-black text-white font-semibold shadow-xs scale-105'
+                      : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
                       }`}
                   >
                     Step 1
@@ -635,8 +633,8 @@ export default function Home() {
                 <div>
                   <span
                     className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 2
-                        ? 'bg-black text-white font-semibold shadow-xs scale-105'
-                        : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
+                      ? 'bg-black text-white font-semibold shadow-xs scale-105'
+                      : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
                       }`}
                   >
                     Step 2
@@ -685,8 +683,8 @@ export default function Home() {
                 <div>
                   <span
                     className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 3
-                        ? 'bg-black text-white font-semibold shadow-xs scale-105'
-                        : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
+                      ? 'bg-black text-white font-semibold shadow-xs scale-105'
+                      : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
                       }`}
                   >
                     Step 3
