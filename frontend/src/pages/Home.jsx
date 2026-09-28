@@ -241,6 +241,10 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [isTechPaused, activeTechList]);
 
+  const selectedTech = useMemo(() => {
+    return technologies.find((t) => t.id === selectedTechId) || technologies[0];
+  }, [selectedTechId]);
+
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '');
@@ -259,8 +263,8 @@ export default function Home() {
       <PrismaHero />
 
       {/* WHAT IS CERTIFA (3D Stack Interactive Section) */}
-      <section id="what-is-certifa" className="relative overflow-hidden bg-white pt-6 pb-16 sm:pt-10 sm:pb-24-24 lg:pt-12 lg:pb-32 lg:pt-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section id="what-is-certifa" className="relative overflow-hidden bg-white py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* TOP HEADER */}
           <motion.div
@@ -268,12 +272,12 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="grid gap-8 sm:gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end"
+            className="grid gap-6 sm:gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end"
           >
             <div>
               {/* Skewed Badge with Certifa Logo */}
               <span
-                className="inline-flex w-fit items-center gap-2 border bg-white px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                className="inline-flex w-fit items-center gap-2 border bg-white px-4 sm:px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                 style={{
                   borderColor: 'rgba(0,0,0,0.08)',
                   color: '#0A0A0A',
@@ -284,9 +288,9 @@ export default function Home() {
                   <img
                     src={certifaLogo}
                     alt="Certifa Logo"
-                    className="h-4 w-4 object-contain"
+                    className="h-3.5 w-3.5 sm:h-4 sm:w-4 object-contain"
                   />
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
+                  <span className="font-mono text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
                     What is Certifa?
                   </span>
                 </span>
@@ -294,7 +298,7 @@ export default function Home() {
 
               {/* Title */}
               <h2
-                className="font-display mt-5 text-3xl font-semibold sm:mt-6 sm:text-5xl md:text-6xl text-neutral-900"
+                className="font-display mt-4 sm:mt-6 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900"
                 style={{ letterSpacing: '-0.025em', lineHeight: 1.08 }}
               >
                 A modern certificate platform with built-in blockchain.
@@ -302,7 +306,7 @@ export default function Home() {
             </div>
 
             {/* Description */}
-            <p className="font-sans max-w-md text-sm leading-relaxed sm:text-base text-neutral-500">
+            <p className="font-sans max-w-md text-xs sm:text-sm md:text-base leading-relaxed text-neutral-500">
               Certifa turns traditional certificates into verifiable digital credentials. Certificates are securely stored, cryptographically secured, and registered on-chain creating a simple and trustworthy way to verify credentials.
             </p>
           </motion.div>
@@ -313,7 +317,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-12 grid items-center gap-8 sm:mt-16 lg:mt-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)_minmax(0,0.9fr)] lg:gap-14"
+            className="mt-10 sm:mt-16 lg:mt-20 grid items-center gap-6 sm:gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)_minmax(0,0.9fr)] lg:gap-14"
           >
 
             {/* LEFT LIST (Desktop) */}
@@ -352,7 +356,7 @@ export default function Home() {
 
             {/* CENTER 3D STAGE */}
             <div
-              className="relative mx-auto h-80 w-full max-w-[520px] sm:h-[420px] lg:h-[480px]"
+              className="relative mx-auto h-72 w-full max-w-[420px] sm:max-w-[500px] sm:h-[380px] lg:h-[460px]"
               style={{ perspective: '1800px', perspectiveOrigin: '50% 85%' }}
             >
               <div
@@ -364,8 +368,8 @@ export default function Home() {
               >
                 {stackLayers.map((layer) => {
                   const isActive = activeLayer === layer.id;
-                  const baseZ = (stackLayers.length - 1 - layer.id) * 28;
-                  const zPosition = isActive ? 115 : baseZ;
+                  const baseZ = (stackLayers.length - 1 - layer.id) * 26;
+                  const zPosition = isActive ? 110 : baseZ;
 
                   return (
                     <div
@@ -389,7 +393,7 @@ export default function Home() {
                           backgroundColor: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
                           borderColor: isActive ? '#0A0A0A' : 'rgba(0,0,0,0.1)',
                           boxShadow: isActive
-                            ? '0 22px 45px rgba(0, 0, 0, 0.16)'
+                            ? '0 20px 40px rgba(0, 0, 0, 0.14)'
                             : '0 2px 8px rgba(0,0,0,0.03)',
                           backdropFilter: 'blur(2px)',
                         }}
@@ -405,9 +409,9 @@ export default function Home() {
                         />
 
                         {/* Header with Icon & Tag */}
-                        <div className="absolute inset-4 flex items-start justify-between">
+                        <div className="absolute inset-3 sm:inset-4 flex items-start justify-between">
                           <span
-                            className="flex h-8 w-8 items-center justify-center rounded-lg border transition-all duration-300"
+                            className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg border transition-all duration-300"
                             style={{
                               backgroundColor: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.85)',
                               borderColor: isActive ? '#0A0A0A' : 'rgba(0,0,0,0.12)',
@@ -417,7 +421,7 @@ export default function Home() {
                             {layer.icon}
                           </span>
                           <span
-                            className="font-mono text-[9px] uppercase tracking-[0.2em] transition-colors"
+                            className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.2em] transition-colors"
                             style={{
                               color: isActive ? '#0A0A0A' : '#737373',
                               fontWeight: isActive ? 700 : 500,
@@ -428,7 +432,7 @@ export default function Home() {
                         </div>
 
                         {/* Bottom Progress Bar & Dot */}
-                        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
+                        <div className="absolute bottom-3 sm:bottom-4 left-3 right-3 sm:left-4 sm:right-4 flex items-end justify-between gap-2 sm:gap-3">
                           <span
                             className="flex h-1.5 flex-1 rounded-full transition-colors"
                             style={{
@@ -491,26 +495,26 @@ export default function Home() {
             </ul>
 
             {/* MOBILE VIEW SELECTOR */}
-            <div className="flex flex-col items-center gap-4 text-center lg:hidden">
+            <div className="flex flex-col items-center gap-3 text-center lg:hidden px-2">
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-900 font-medium">
                 Layer {stackLayers[activeLayer].layerTag} · 0{activeLayer + 1} / 04
               </span>
-              <h3 className="font-display text-2xl font-semibold sm:text-3xl text-neutral-900 tracking-tight">
+              <h3 className="font-display text-xl font-semibold sm:text-2xl text-neutral-900 tracking-tight">
                 {stackLayers[activeLayer].rightTitle}
               </h3>
-              <p className="font-sans max-w-xs text-sm leading-relaxed text-neutral-500">
+              <p className="font-sans max-w-xs text-xs sm:text-sm leading-relaxed text-neutral-500">
                 {stackLayers[activeLayer].subtitle}
               </p>
-              <div className="mt-1 flex items-center gap-1.5">
+              <div className="mt-2 flex items-center gap-2">
                 {stackLayers.map((l) => (
                   <button
                     key={l.id}
                     type="button"
                     onClick={() => setActiveLayer(l.id)}
-                    className="h-1.5 cursor-pointer rounded-full transition-all duration-300"
+                    className="h-2 cursor-pointer rounded-full transition-all duration-300"
                     style={{
-                      width: activeLayer === l.id ? '24px' : '8px',
-                      backgroundColor: activeLayer === l.id ? '#0A0A0A' : 'rgba(0,0,0,0.12)',
+                      width: activeLayer === l.id ? '28px' : '10px',
+                      backgroundColor: activeLayer === l.id ? '#0A0A0A' : 'rgba(0,0,0,0.15)',
                     }}
                     aria-label={`Show ${l.rightTitle}`}
                   />
@@ -524,18 +528,18 @@ export default function Home() {
       </section>
 
       {/* FEATURE SECTION 1 ("How Certifa Works" - Seamless Background with Column Dividers) */}
-      <section id="how-it-works" className="max-w-7xl mx-auto px-5 sm:px-8 py-30 space-y-10">
+      <section id="how-it-works" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 space-y-8 sm:space-y-10">
         {/* Main Title Header */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl space-y-4"
+          className="max-w-2xl space-y-3 sm:space-y-4"
         >
           {/* Skewed Badge with Certifa Logo */}
           <span
-            className="inline-flex w-fit items-center gap-2 border bg-white px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+            className="inline-flex w-fit items-center gap-2 border bg-white px-4 sm:px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
             style={{
               borderColor: 'rgba(0,0,0,0.08)',
               color: '#0A0A0A',
@@ -546,15 +550,15 @@ export default function Home() {
               <img
                 src={certifaLogo}
                 alt="Certifa Logo"
-                className="h-4 w-4 object-contain"
+                className="h-3.5 w-3.5 sm:h-4 sm:w-4 object-contain"
               />
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
+              <span className="font-mono text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
                 How Certifa Works
               </span>
             </span>
           </span>
 
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
             From certificate to verification.
           </h2>
           <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-xl">
@@ -571,22 +575,22 @@ export default function Home() {
           className="relative"
         >
           {/* 3 Columns Grid with Vertical Dividers */}
-          <div className="grid grid-cols-1 md:grid-cols-3 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 relative z-10 border border-neutral-200/80 md:border-0">
             {/* Top Horizontal Connecting Line behind Badges (Desktop/Tablet) */}
             <div className="absolute top-[38px] sm:top-[46px] left-6 right-6 sm:left-10 sm:right-10 h-px border-b border-dashed border-neutral-300 hidden md:block z-10 pointer-events-none" />
 
             {/* --- STEP 01 --- */}
             <div
               onClick={() => setActiveStep(1)}
-              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 pb-0 md:pb-0 cursor-pointer transition-all duration-300 ${activeStep === 1 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 cursor-pointer transition-all duration-300 ${activeStep === 1 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
                 }`}
             >
               {/* Step Badge & Text Block */}
-              <div className="p-6 sm:p-8 sm:space-y-6">
+              <div className="p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-6">
                 {/* Badge */}
                 <div>
                   <span
-                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 1
+                    className={`font-mono relative z-20 inline-block px-3.5 sm:px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 1
                       ? 'bg-black text-white font-semibold shadow-xs scale-105'
                       : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
                       }`}
@@ -594,9 +598,9 @@ export default function Home() {
                     Step 1
                   </span>
                   {/* Image Container */}
-                  <div className="px-6">
-                    <div className="w-full h-48 sm:h-48 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                      <div className="w-full h-full max-w-[180px] max-h-[115px] flex items-center justify-center relative">
+                  <div className="px-2 sm:px-4 mt-2">
+                    <div className="w-full h-36 sm:h-44 md:h-48 flex flex-col items-center justify-center p-2 text-center overflow-hidden">
+                      <div className="w-full h-full max-w-[160px] sm:max-w-[180px] flex items-center justify-center relative">
                         <svg viewBox="0 0 120 100" className="w-full h-full transition-all duration-300" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                           <rect x="20" y="22" width="80" height="56" rx="14" fill="#ffffff" stroke={activeStep === 1 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 1 ? "1.6" : "1"} />
                           <circle cx="38" cy="50" r="3" fill="#ffffff" stroke={activeStep === 1 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 1 ? "1.6" : "1"} />
@@ -611,8 +615,8 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Title & Description */}
-                <div className="space-y-2">
-                  <h3 className={`font-display text-lg font-bold transition-colors ${activeStep === 1 ? 'text-neutral-900' : 'text-neutral-700'}`}>
+                <div className="space-y-1.5 sm:space-y-2">
+                  <h3 className={`font-display text-base sm:text-lg font-bold transition-colors ${activeStep === 1 ? 'text-neutral-900' : 'text-neutral-700'}`}>
                     Create a certificate.
                   </h3>
                   <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
@@ -625,15 +629,15 @@ export default function Home() {
             {/* --- STEP 02 --- */}
             <div
               onClick={() => setActiveStep(2)}
-              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 pb-6 md:pb-0 cursor-pointer transition-all duration-300 ${activeStep === 2 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+              className={`group flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200/80 cursor-pointer transition-all duration-300 ${activeStep === 2 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
                 }`}
             >
               {/* Step Badge & Text Block */}
-              <div className="p-6 sm:p-8 space-y-6">
+              <div className="p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-6">
                 {/* Badge */}
                 <div>
                   <span
-                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 2
+                    className={`font-mono relative z-20 inline-block px-3.5 sm:px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 2
                       ? 'bg-black text-white font-semibold shadow-xs scale-105'
                       : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
                       }`}
@@ -641,9 +645,9 @@ export default function Home() {
                     Step 2
                   </span>
                   {/* Step 2 Visual Container */}
-                  <div className="px-6">
-                    <div className="w-full h-48 sm:h-48 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                      <div className="w-full h-full max-w-[180px] max-h-[115px] flex items-center justify-center relative">
+                  <div className="px-2 sm:px-4 mt-2">
+                    <div className="w-full h-36 sm:h-44 md:h-48 flex flex-col items-center justify-center p-2 text-center overflow-hidden">
+                      <div className="w-full h-full max-w-[160px] sm:max-w-[180px] flex items-center justify-center relative">
                         <svg viewBox="0 0 120 100" className="w-full h-full transition-all duration-300" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                           {/* Certificate Document */}
                           <path d="M 32 18 L 78 18 L 88 28 L 88 84 L 32 84 Z" fill="#ffffff" stroke={activeStep === 2 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 2 ? "1.6" : "1"} />
@@ -661,8 +665,8 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Title & Description */}
-                <div className="space-y-2">
-                  <h3 className={`font-display text-lg font-bold transition-colors ${activeStep === 2 ? 'text-neutral-900' : 'text-neutral-700'}`}>
+                <div className="space-y-1.5 sm:space-y-2">
+                  <h3 className={`font-display text-base sm:text-lg font-bold transition-colors ${activeStep === 2 ? 'text-neutral-900' : 'text-neutral-700'}`}>
                     Make it verifiable.
                   </h3>
                   <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
@@ -675,15 +679,15 @@ export default function Home() {
             {/* --- STEP 03 --- */}
             <div
               onClick={() => setActiveStep(3)}
-              className={`group flex flex-col justify-between pb-6 md:pb-0 cursor-pointer transition-all duration-300 ${activeStep === 3 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
+              className={`group flex flex-col justify-between cursor-pointer transition-all duration-300 ${activeStep === 3 ? 'bg-[#f5f5f5]' : 'bg-[#fafafa] hover:bg-[#f5f5f5]'
                 }`}
             >
               {/* Step Badge & Text Block */}
-              <div className="p-6 sm:p-8 space-y-6">
+              <div className="p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-6">
                 {/* Badge */}
                 <div>
                   <span
-                    className={`font-mono relative z-20 inline-block px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 3
+                    className={`font-mono relative z-20 inline-block px-3.5 sm:px-4 py-1.5 text-xs transition-all duration-300 ${activeStep === 3
                       ? 'bg-black text-white font-semibold shadow-xs scale-105'
                       : 'bg-[#f0f0f2] text-neutral-600 hover:text-neutral-900 border border-neutral-200/60 font-medium'
                       }`}
@@ -691,9 +695,9 @@ export default function Home() {
                     Step 3
                   </span>
                   {/* Step 3 Visual Container */}
-                  <div className="px-6">
-                    <div className="w-full h-48 sm:h-48 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                      <div className="w-full h-full max-w-[180px] max-h-[115px] flex items-center justify-center relative">
+                  <div className="px-2 sm:px-4 mt-2">
+                    <div className="w-full h-36 sm:h-44 md:h-48 flex flex-col items-center justify-center p-2 text-center overflow-hidden">
+                      <div className="w-full h-full max-w-[160px] sm:max-w-[180px] flex items-center justify-center relative">
                         <svg viewBox="0 0 120 100" className="w-full h-full transition-all duration-300" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                           {/* Verification Shield */}
                           <path d="M 60 20 L 84 30 V 54 C 84 70 60 82 60 82 C 60 82 36 70 36 54 V 30 Z" fill="#ffffff" stroke={activeStep === 3 ? "#0A0A0A" : "#9ca3af"} strokeWidth={activeStep === 3 ? "1.6" : "1"} />
@@ -705,8 +709,8 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Title & Description */}
-                <div className="space-y-2">
-                  <h3 className={`font-display text-lg font-bold transition-colors ${activeStep === 3 ? 'text-neutral-900' : 'text-neutral-700'}`}>
+                <div className="space-y-1.5 sm:space-y-2">
+                  <h3 className={`font-display text-base sm:text-lg font-bold transition-colors ${activeStep === 3 ? 'text-neutral-900' : 'text-neutral-700'}`}>
                     Verify in seconds.
                   </h3>
                   <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
@@ -721,18 +725,18 @@ export default function Home() {
       </section>
 
       {/* FEATURE SECTION 2 ("Why Certifa?" - Split List Layout matching why-choose-us image) */}
-      <section id="why-certifa" className="w-full bg-white py-30">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 space-y-10">
+      <section id="why-certifa" className="w-full bg-white py-16 sm:py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-2xl space-y-4"
+            className="max-w-2xl space-y-3 sm:space-y-4"
           >
             {/* Skewed Badge with Certifa Logo */}
             <span
-              className="inline-flex w-fit items-center gap-2 border bg-white px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+              className="inline-flex w-fit items-center gap-2 border bg-white px-4 sm:px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               style={{
                 borderColor: 'rgba(0,0,0,0.08)',
                 color: '#0A0A0A',
@@ -743,15 +747,15 @@ export default function Home() {
                 <img
                   src={certifaLogo}
                   alt="Certifa Logo"
-                  className="h-4 w-4 object-contain"
+                  className="h-3.5 w-3.5 sm:h-4 sm:w-4 object-contain"
                 />
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
+                <span className="font-mono text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
                   Why Certifa?
                 </span>
               </span>
             </span>
 
-            <h2 className="font-display text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
+            <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
               Because a certificate should be more than just a PDF.
             </h2>
             <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-xl">
@@ -759,7 +763,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
 
             {/* LEFT COLUMN: Balanced Aspect Ratio Visual */}
             <motion.div
@@ -767,12 +771,12 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-5 flex flex-col justify-between"
+              className="lg:col-span-5 flex flex-col justify-between w-full"
             >
-              <div className="relative mx-auto flex aspect-[4/5] min-h-[460px] w-full max-w-[400px] items-center justify-center overflow-hidden rounded-3xl border border-black/10 bg-[#FAFAF7] sm:max-w-[440px] lg:ml-0 lg:mr-auto">
+              <div className="relative mx-auto flex aspect-[4/5] min-h-[300px] sm:min-h-[400px] w-full max-w-[360px] sm:max-w-[440px] items-center justify-center overflow-hidden rounded-3xl border border-black/10 bg-[#FAFAF7] lg:ml-0 lg:mr-auto">
                 {/* Matrix Binary Pattern Background with subtle opacity animation */}
                 <motion.div
-                  className="pointer-events-none absolute inset-0 flex flex-col justify-between px-5 py-6 font-mono text-[11px] leading-[1.35] tracking-[0.05em] text-[#C9C9C0]"
+                  className="pointer-events-none absolute inset-0 flex flex-col justify-between px-4 sm:px-5 py-5 sm:py-6 font-mono text-[9px] sm:text-[11px] leading-[1.35] tracking-[0.05em] text-[#C9C9C0]"
                   animate={{ opacity: [0.35, 0.65, 0.35] }}
                   transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
                   aria-hidden="true"
@@ -888,11 +892,11 @@ export default function Home() {
                 </svg>
 
                 {/* Bottom Labels */}
-                <div className="absolute bottom-4 left-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 z-20">
+                <div className="absolute bottom-3 sm:bottom-4 left-4 sm:left-5 flex items-center gap-2 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-neutral-400 z-20">
                   <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" />
                   Tamper-Proof
                 </div>
-                <div className="absolute bottom-4 right-5 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 z-20">
+                <div className="absolute bottom-3 sm:bottom-4 right-4 sm:right-5 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-neutral-400 z-20">
                   Valid · On-Chain
                 </div>
               </div>
@@ -907,8 +911,8 @@ export default function Home() {
               className="lg:col-span-7 flex flex-col"
             >
               {/* Top Main Heading */}
-              <div className="border-t border-neutral-200 pt-6 pb-8">
-                <h2 className="font-display text-2xl sm:text-4xl font-bold text-neutral-900 tracking-tight leading-snug">
+              <div className="border-t border-neutral-200 pt-5 sm:pt-6 pb-6 sm:pb-8">
+                <h2 className="font-display text-xl sm:text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight leading-snug">
                   Built for certificates people can trust.
                 </h2>
               </div>
@@ -916,15 +920,15 @@ export default function Home() {
               {/* List Items */}
               <div className="flex flex-col">
                 {/* Item 01 */}
-                <div className="border-t border-neutral-200 py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
+                <div className="border-t border-neutral-200 py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 items-start">
                   <div className="sm:col-span-5 space-y-1">
                     <span className="text-xs font-mono font-medium text-neutral-400 block">01</span>
-                    <span className="text-xs font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Tamper-Evident</span>
+                    <span className="text-[11px] font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Tamper-Evident</span>
                     <h4 className="font-display text-base sm:text-lg font-bold text-neutral-900 leading-snug">
                       Protect certificate integrity
                     </h4>
                   </div>
-                  <div className="sm:col-span-7 pt-1">
+                  <div className="sm:col-span-7 pt-0.5 sm:pt-1">
                     <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                       Each certificate is registered with a unique cryptographic hash, making unauthorized changes detectable.
                     </p>
@@ -932,15 +936,15 @@ export default function Home() {
                 </div>
 
                 {/* Item 02 */}
-                <div className="border-t border-neutral-200 py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
+                <div className="border-t border-neutral-200 py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 items-start">
                   <div className="sm:col-span-5 space-y-1">
                     <span className="text-xs font-mono font-medium text-neutral-400 block">02</span>
-                    <span className="text-xs font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Instant Verification</span>
+                    <span className="text-[11px] font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Instant Verification</span>
                     <h4 className="font-display text-base sm:text-lg font-bold text-neutral-900 leading-snug">
                       Verify in seconds
                     </h4>
                   </div>
-                  <div className="sm:col-span-7 pt-1">
+                  <div className="sm:col-span-7 pt-0.5 sm:pt-1">
                     <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                       Scan a QR code or enter a Certificate ID to instantly verify a certificate without creating an account.
                     </p>
@@ -948,15 +952,15 @@ export default function Home() {
                 </div>
 
                 {/* Item 03 */}
-                <div className="border-t border-neutral-200 py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
+                <div className="border-t border-neutral-200 py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 items-start">
                   <div className="sm:col-span-5 space-y-1">
                     <span className="text-xs font-mono font-medium text-neutral-400 block">03</span>
-                    <span className="text-xs font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Blockchain-Backed</span>
+                    <span className="text-[11px] font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Blockchain-Backed</span>
                     <h4 className="font-display text-base sm:text-lg font-bold text-neutral-900 leading-snug">
                       A record you can verify
                     </h4>
                   </div>
-                  <div className="sm:col-span-7 pt-1">
+                  <div className="sm:col-span-7 pt-0.5 sm:pt-1">
                     <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                       Certificate records are anchored on the blockchain, providing a transparent and independently verifiable proof.
                     </p>
@@ -964,15 +968,15 @@ export default function Home() {
                 </div>
 
                 {/* Item 04 */}
-                <div className="border-t border-neutral-200 py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
+                <div className="border-t border-neutral-200 py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 items-start">
                   <div className="sm:col-span-5 space-y-1">
                     <span className="text-xs font-mono font-medium text-neutral-400 block">04</span>
-                    <span className="text-xs font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Simple by Design</span>
+                    <span className="text-[11px] font-mono font-semibold text-neutral-500 block uppercase tracking-wider">Simple by Design</span>
                     <h4 className="font-display text-base sm:text-lg font-bold text-neutral-900 leading-snug">
                       No friction for verification
                     </h4>
                   </div>
-                  <div className="sm:col-span-7 pt-1">
+                  <div className="sm:col-span-7 pt-0.5 sm:pt-1">
                     <p className="font-sans text-xs sm:text-sm text-neutral-500 leading-relaxed">
                       Issuers can create verifiable certificates through a simple workflow, while anyone can verify them without a wallet.
                     </p>
@@ -988,9 +992,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TECHNOLOGIES SECTION (Interactive Arc Visualization) */}
-      <section id="technologies" className="relative w-full bg-white py-20 sm:py-28 lg:py-32 overflow-hidden border-t border-neutral-100">
-        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
+      {/* TECHNOLOGIES SECTION (Interactive Arc Visualization + Responsive Details Card) */}
+      <section id="technologies" className="relative w-full bg-white py-16 sm:py-24 lg:py-32 overflow-hidden border-t border-neutral-100">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* SECTION HEADER */}
           <motion.div
@@ -1002,7 +1006,7 @@ export default function Home() {
           >
             {/* Skewed Badge with Certifa Logo */}
             <span
-              className="inline-flex w-fit items-center gap-2 border bg-white px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+              className="inline-flex w-fit items-center gap-2 border bg-white px-4 sm:px-5 py-2 text-xs font-medium tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               style={{
                 borderColor: 'rgba(0,0,0,0.08)',
                 color: '#0A0A0A',
@@ -1013,13 +1017,13 @@ export default function Home() {
                 <img
                   src={certifaLogo}
                   alt="Certifa Logo"
-                  className="h-4 w-4 object-contain"
+                  className="h-3.5 w-3.5 sm:h-4 sm:w-4 object-contain"
                 />
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
+                <span className="font-mono text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
                   Technologies
                 </span>
                 <span className="h-3 w-px bg-neutral-200" aria-hidden="true" />
-                <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-wider">
+                <span className="font-mono text-[9px] sm:text-[10px] text-neutral-500 uppercase tracking-wider">
                   Decentralized Architecture
                 </span>
               </span>
@@ -1027,7 +1031,7 @@ export default function Home() {
 
             {/* Section Heading */}
             <h2
-              className="font-display mt-5 text-3xl font-semibold sm:mt-6 sm:text-5xl md:text-6xl text-neutral-900"
+              className="font-display mt-4 sm:mt-6 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900"
               style={{ letterSpacing: '-0.025em', lineHeight: 1.06 }}
             >
               Powered by proven <br />
@@ -1035,12 +1039,40 @@ export default function Home() {
             </h2>
 
             {/* Description */}
-            <p className="mt-5 max-w-2xl text-sm leading-relaxed sm:text-base text-neutral-500 font-sans">
-              Every node on the arc represents a foundational pillar of Certifa. From cryptographic smart contracts to distributed IPFS storage, explore how each technology secures authentic credentials.
+            <p className="mt-4 sm:mt-5 max-w-2xl text-xs sm:text-sm md:text-base leading-relaxed text-neutral-500 font-sans">
+              Every node represents a foundational pillar of Certifa. From cryptographic smart contracts to distributed IPFS storage, tap any technology to inspect how it secures authentic credentials.
             </p>
           </motion.div>
 
-          {/* INTERACTIVE ARC DIAGRAM STAGE */}
+          {/* MOBILE / SMALL SCREEN TECH SELECTOR GRID (< md) */}
+          <div className="md:hidden mt-8">
+            <div className="grid grid-cols-4 gap-2 sm:gap-3">
+              {technologies.map((tech) => {
+                const isSelected = selectedTechId === tech.id;
+                return (
+                  <button
+                    key={tech.id}
+                    type="button"
+                    onClick={() => setSelectedTechId(tech.id)}
+                    className={`flex flex-col items-center justify-center p-2.5 rounded-xl border transition-all cursor-pointer ${
+                      isSelected
+                        ? 'border-neutral-900 bg-neutral-900 text-white shadow-md scale-102'
+                        : 'border-neutral-200 bg-white hover:border-neutral-400 text-neutral-800'
+                    }`}
+                  >
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center mb-1.5 ${isSelected ? 'bg-neutral-800' : 'bg-neutral-100'}`}>
+                      <img src={tech.icon} alt={tech.name} className="w-5 h-5 object-contain" />
+                    </div>
+                    <span className="text-[10px] font-medium font-mono truncate max-w-full">
+                      {tech.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* INTERACTIVE ARC DIAGRAM STAGE (Desktop & Tablet md+) */}
           <motion.div
             initial={{ opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1048,7 +1080,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             onMouseEnter={() => setIsTechPaused(true)}
             onMouseLeave={() => setIsTechPaused(false)}
-            className="relative mx-auto mt-10 sm:mt-14 w-full max-w-5xl aspect-[2/1] min-h-[360px] sm:min-h-[460px] lg:min-h-[520px]"
+            className="hidden md:block relative mx-auto mt-10 sm:mt-14 w-full max-w-5xl aspect-[2/1] min-h-[380px] lg:min-h-[500px]"
           >
 
             {/* SVG Arc & Ray Vector Canvas */}
@@ -1174,7 +1206,7 @@ export default function Home() {
                         type="button"
                         onClick={() => setSelectedTechId(node.id)}
                         aria-label={`Select ${node.name}`}
-                        className={`relative flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 cursor-pointer items-center justify-center rounded-full border transition-all duration-300 ${isSelected
+                        className={`relative flex h-11 w-11 sm:h-12 sm:w-12 lg:h-14 lg:w-14 cursor-pointer items-center justify-center rounded-full border transition-all duration-300 ${isSelected
                           ? 'border-neutral-900 bg-white shadow-xl scale-110 ring-4 ring-neutral-900/10'
                           : isDimmed
                             ? 'border-neutral-200/50 bg-white/60 opacity-40 hover:opacity-100 hover:scale-105'
@@ -1214,14 +1246,13 @@ export default function Home() {
 
             {/* CENTER BASE HUB WITH CERTIFA LOGO */}
             <div className="absolute left-1/2 bottom-[12%] -translate-x-1/2 translate-y-1/2 flex flex-col items-center pointer-events-auto z-30">
-              {/* Center Hub Outer Ring */}
               <div className="relative flex items-center justify-center">
-                <div className="absolute h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-neutral-900/5 animate-pulse" />
-                <div className="relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 border-neutral-900 bg-white shadow-xl">
+                <div className="absolute h-18 w-18 sm:h-22 sm:w-22 rounded-full bg-neutral-900/5 animate-pulse" />
+                <div className="relative flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 border-neutral-900 bg-white shadow-xl">
                   <img
                     src={certifaLogo}
                     alt="Certifa Center Hub"
-                    className="h-8 w-8 sm:h-9 sm:w-9 object-contain"
+                    className="h-7 w-7 sm:h-9 sm:w-9 object-contain"
                   />
                 </div>
               </div>
@@ -1231,29 +1262,81 @@ export default function Home() {
             </div>
           </motion.div>
 
+          {/* ACTIVE TECHNOLOGY DETAILS CARD (Responsive across all screens) */}
+          {selectedTech && (
+            <motion.div
+              key={selectedTech.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35 }}
+              className="mt-6 sm:mt-10 max-w-3xl mx-auto bg-neutral-50 border border-neutral-200/90 p-5 sm:p-7 shadow-xs"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-200/70 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white border border-neutral-200 flex items-center justify-center p-2 shrink-0">
+                    <img src={selectedTech.icon} alt={selectedTech.name} className="w-full h-full object-contain" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-display text-base sm:text-lg font-bold text-neutral-900">{selectedTech.name}</h3>
+                      <span className="text-[10px] font-mono font-medium px-2 py-0.5 bg-neutral-200 text-neutral-700">
+                        {selectedTech.tag}
+                      </span>
+                    </div>
+                    <p className="text-xs text-neutral-500">{selectedTech.shortDesc}</p>
+                  </div>
+                </div>
+
+                <a
+                  href={selectedTech.docUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-800 hover:text-black self-start sm:self-center"
+                >
+                  Documentation <span>&rarr;</span>
+                </a>
+              </div>
+
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mt-4 font-sans">
+                {selectedTech.description}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-neutral-200/60">
+                {selectedTech.features.map((feat, idx) => (
+                  <span
+                    key={idx}
+                    className="text-[11px] font-mono px-2.5 py-1 bg-white border border-neutral-200 text-neutral-700 font-medium"
+                  >
+                    ✓ {feat}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
         </div>
       </section>
 
-      {/* BOTTOM CTA BANNER ("How You Take Notes?" equivalent) */}
+      {/* BOTTOM CTA BANNER */}
       <motion.section
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-6xl mx-auto px-4 pt-16 sm:px-6"
+        className="max-w-6xl mx-auto px-4 pt-12 sm:pt-16 sm:px-6"
       >
-        <div className="bg-neutral-100 p-8 sm:p-12 border border-neutral-200/80 text-center space-y-6 relative overflow-hidden">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight">
+        <div className="bg-neutral-100 p-6 sm:p-10 md:p-12 border border-neutral-200/80 text-center space-y-5 sm:space-y-6 relative overflow-hidden">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-neutral-900 tracking-tight">
             How You Issue Certificates?
           </h2>
-          <p className="font-sans text-sm text-neutral-600 max-w-lg mx-auto leading-relaxed">
+          <p className="font-sans text-xs sm:text-sm md:text-base text-neutral-600 max-w-lg mx-auto leading-relaxed">
             Start issuing tamper-proof certificates on Ethereum Sepolia. Connect your wallet and manage credentials effortlessly.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 font-sans">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 font-sans max-w-xs sm:max-w-none mx-auto">
             <Link
               to="/issue"
-              className="px-6 py-3 bg-neutral-900 text-white font-medium text-xs sm:text-sm hover:bg-neutral-800 transition shadow-sm"
+              className="w-full sm:w-auto px-6 py-3 bg-neutral-900 text-white font-medium text-xs sm:text-sm hover:bg-neutral-800 transition shadow-sm text-center"
             >
               Launch App
             </Link>
@@ -1261,7 +1344,7 @@ export default function Home() {
               href={DOCS_URL}
               target="_blank"
               rel="noreferrer"
-              className="px-6 py-3 bg-white border border-neutral-300 text-neutral-800 font-medium text-xs sm:text-sm hover:bg-neutral-50 transition inline-flex items-center gap-1.5"
+              className="w-full sm:w-auto px-6 py-3 bg-white border border-neutral-300 text-neutral-800 font-medium text-xs sm:text-sm hover:bg-neutral-50 transition inline-flex items-center justify-center gap-1.5"
             >
               Certifa Docs &gt;
             </a>

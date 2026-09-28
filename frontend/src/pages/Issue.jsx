@@ -315,32 +315,32 @@ export default function Issue() {
   });
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 space-y-12 animate-fade-in text-left">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8 sm:space-y-12 animate-fade-in text-left">
       {/* Header */}
-      <div className="space-y-2 border-b border-neutral-200 pb-6">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+      <div className="space-y-2 border-b border-neutral-200 pb-5 sm:pb-6">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
           Issuer Dashboard
         </h1>
-        <p className="text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
           Pusat penerbitan (Issue) dan pengelolaan status sertifikat on-chain (termasuk pencabutan/Revoke) untuk Authorized Issuer menggunakan Wagmi & Viem.
         </p>
       </div>
 
       {/* STATE 1: Wallet Not Connected */}
       {!isWalletConnected && (
-        <div className="bg-white p-8 border border-neutral-200/90 shadow-sm text-center space-y-6">
-          <div className="w-16 h-16 bg-neutral-100 flex items-center justify-center mx-auto text-neutral-700 border border-neutral-200">
-            <Wallet className="w-8 h-8" />
+        <div className="bg-white p-6 sm:p-8 border border-neutral-200/90 shadow-sm text-center space-y-5 sm:space-y-6">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 bg-neutral-100 flex items-center justify-center mx-auto text-neutral-700 border border-neutral-200">
+            <Wallet className="w-7 h-7 sm:w-8 sm:h-8" />
           </div>
           <div className="space-y-2 max-w-sm mx-auto">
-            <h3 className="text-xl font-bold text-neutral-900">Connect Your Web3 Wallet</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-neutral-900">Connect Your Web3 Wallet</h3>
             <p className="text-xs text-neutral-500 leading-relaxed">
               Anda harus menghubungkan wallet (MetaMask) untuk mengonfirmasi identitas dan otorisasi issuer Anda di Ethereum Sepolia.
             </p>
           </div>
           <button
             onClick={connectWallet}
-            className="px-6 py-3 bg-neutral-900 text-white text-xs font-semibold hover:bg-neutral-800 transition shadow-sm inline-flex items-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3 bg-neutral-900 text-white text-xs font-semibold hover:bg-neutral-800 transition shadow-sm inline-flex items-center justify-center gap-2 cursor-pointer"
           >
             <Wallet className="w-4 h-4" /> Connect Wallet Sekarang
           </button>
@@ -349,12 +349,12 @@ export default function Issue() {
 
       {/* STATE 2: Wallet Connected but Unauthorized */}
       {isWalletConnected && !isAuthorized && (
-        <div className="bg-amber-50/60 p-8 border border-amber-200 shadow-sm text-center space-y-6">
-          <div className="w-16 h-16 bg-amber-100 flex items-center justify-center mx-auto text-amber-700 border border-amber-200">
-            <ShieldAlert className="w-8 h-8" />
+        <div className="bg-amber-50/60 p-6 sm:p-8 border border-amber-200 shadow-sm text-center space-y-5 sm:space-y-6">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 bg-amber-100 flex items-center justify-center mx-auto text-amber-700 border border-amber-200">
+            <ShieldAlert className="w-7 h-7 sm:w-8 sm:h-8" />
           </div>
           <div className="space-y-2 max-w-md mx-auto">
-            <h3 className="text-xl font-bold text-neutral-900">Wallet Connected but Unauthorized</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-neutral-900">Wallet Connected but Unauthorized</h3>
             <p className="text-xs text-neutral-600 leading-relaxed">
               Wallet <code className="bg-amber-100 px-1.5 py-0.5 font-mono text-neutral-800 break-all">{account}</code> belum terdaftar sebagai Authorized Issuer pada smart contract.
             </p>
@@ -367,25 +367,25 @@ export default function Issue() {
 
       {/* STATE 3: Authorized Issuer Form & Issuing Workflow */}
       {isWalletConnected && isAuthorized && (
-        <div className="space-y-12">
+        <div className="space-y-10 sm:space-y-12">
           {/* SECTION 1: ISSUE FORM */}
           {processingState === 'idle' && (
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                  <h2 className="text-xl font-bold text-neutral-900">Penerbitan Sertifikat Baru (Issue)</h2>
+                  <h2 className="text-lg sm:text-xl font-bold text-neutral-900">Penerbitan Sertifikat Baru (Issue)</h2>
                   <p className="text-xs text-neutral-500">Daftarkan metadata sertifikat dan file final ke blockchain & IPFS</p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 self-start sm:self-center">
                   <span className="w-2 h-2 bg-emerald-500 animate-pulse"></span>
-                  <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 border border-emerald-200">
+                  <span className="text-[11px] sm:text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 border border-emerald-200">
                     Authorized Issuer
                   </span>
                 </div>
               </div>
 
-              <form onSubmit={handleIssueSubmit} className="bg-white p-6 sm:p-8 border border-neutral-200/90 shadow-sm space-y-6">
-                <div className="space-y-4">
+              <form onSubmit={handleIssueSubmit} className="bg-white p-5 sm:p-8 border border-neutral-200/90 shadow-sm space-y-6">
+                <div className="space-y-4 sm:space-y-5">
                   {/* Title */}
                   <div>
                     <label className="block text-xs font-bold text-neutral-800 uppercase tracking-wider mb-2">
@@ -397,7 +397,7 @@ export default function Issue() {
                       placeholder="Contoh: Certificate of Excellence in Blockchain Engineering"
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      className="w-full px-4 py-3 bg-neutral-50 border border-neutral-200 text-xs text-neutral-900 focus:bg-white focus:outline-none focus:border-neutral-900 transition"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-neutral-50 border border-neutral-200 text-xs sm:text-sm text-neutral-900 focus:bg-white focus:outline-none focus:border-neutral-900 transition"
                     />
                   </div>
 
@@ -412,7 +412,7 @@ export default function Issue() {
                       placeholder="Contoh: Budi Santoso"
                       value={formData.recipient}
                       onChange={(e) => setFormData({ ...formData, recipient: e.target.value })}
-                      className="w-full px-4 py-3 bg-neutral-50 border border-neutral-200 text-xs text-neutral-900 focus:bg-white focus:outline-none focus:border-neutral-900 transition"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-neutral-50 border border-neutral-200 text-xs sm:text-sm text-neutral-900 focus:bg-white focus:outline-none focus:border-neutral-900 transition"
                     />
                   </div>
 
@@ -426,7 +426,7 @@ export default function Issue() {
                       required
                       value={formData.issueDate}
                       onChange={(e) => setFormData({ ...formData, issueDate: e.target.value })}
-                      className="w-full px-4 py-3 bg-neutral-50 border border-neutral-200 text-xs text-neutral-900 focus:bg-white focus:outline-none focus:border-neutral-900 transition"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-neutral-50 border border-neutral-200 text-xs sm:text-sm text-neutral-900 focus:bg-white focus:outline-none focus:border-neutral-900 transition"
                     />
                   </div>
 
@@ -435,7 +435,7 @@ export default function Issue() {
                     <label className="block text-xs font-bold text-neutral-800 uppercase tracking-wider mb-2">
                       Upload File Sertifikat Asli (PDF/PNG/JPG/WEBP) *
                     </label>
-                    <div className="border-2 border-dashed border-neutral-200 hover:border-neutral-400 p-6 text-center bg-neutral-50/50 transition relative">
+                    <div className="border-2 border-dashed border-neutral-200 hover:border-neutral-400 p-5 sm:p-6 text-center bg-neutral-50/50 transition relative">
                       <input
                         type="file"
                         accept="image/*,.pdf"
@@ -443,8 +443,8 @@ export default function Issue() {
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                       />
                       <div className="space-y-2 pointer-events-none">
-                        <div className="w-10 h-10 bg-neutral-100 flex items-center justify-center mx-auto text-neutral-600">
-                          <Upload className="w-5 h-5" />
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 bg-neutral-100 flex items-center justify-center mx-auto text-neutral-600">
+                          <Upload className="w-4 h-4 sm:w-5 sm:h-5" />
                         </div>
                         {formData.file ? (
                           <div className="text-xs font-semibold text-emerald-600 flex items-center justify-center gap-1">
@@ -475,15 +475,15 @@ export default function Issue() {
 
           {/* PROCESSING STATE */}
           {processingState === 'processing' && (
-            <div className="bg-white p-8 border border-neutral-200 shadow-md space-y-6">
+            <div className="bg-white p-6 sm:p-8 border border-neutral-200 shadow-md space-y-6">
               <div className="text-center space-y-2">
-                <h3 className="text-xl font-bold text-neutral-900">Processing Certificate...</h3>
-                <p className="text-xs text-neutral-500">
+                <h3 className="text-lg sm:text-xl font-bold text-neutral-900">Processing Certificate...</h3>
+                <p className="text-xs text-neutral-500 max-w-md mx-auto leading-relaxed">
                   Harap konfirmasi transaksi di wallet MetaMask Anda. Sistem sedang menempelkan QR code, mengunggah ke IPFS, dan mencatat transaksi ke Ethereum Sepolia.
                 </p>
               </div>
 
-              <div className="space-y-3 max-w-md mx-auto pt-4">
+              <div className="space-y-2.5 sm:space-y-3 max-w-md mx-auto pt-2 sm:pt-4">
                 {steps.map((stepName, idx) => {
                   const isDone = idx < currentStep;
                   const isCurrent = idx === currentStep;
@@ -491,7 +491,7 @@ export default function Issue() {
                   return (
                     <div
                       key={idx}
-                      className={`p-3.5 border flex items-center gap-3 transition-all ${
+                      className={`p-3 sm:p-3.5 border flex items-center gap-3 transition-all ${
                         isDone
                           ? 'bg-emerald-50/70 border-emerald-200 text-emerald-900'
                           : isCurrent
@@ -499,16 +499,16 @@ export default function Issue() {
                             : 'bg-neutral-50 border-neutral-200 text-neutral-400 opacity-60'
                       }`}
                     >
-                      <div className="w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-xs font-bold shrink-0">
                         {isDone ? (
-                          <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
                         ) : isCurrent ? (
-                          <Loader2 className="w-4 h-4 animate-spin text-white" />
+                          <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin text-white" />
                         ) : (
                           idx + 1
                         )}
                       </div>
-                      <span className="text-xs font-medium">{stepName}</span>
+                      <span className="text-[11px] sm:text-xs font-medium">{stepName}</span>
                     </div>
                   );
                 })}
@@ -518,19 +518,19 @@ export default function Issue() {
 
           {/* ERROR STATE */}
           {processingState === 'error' && (
-            <div className="bg-rose-50/70 p-8 border border-rose-200 shadow-sm space-y-6 text-center">
-              <div className="w-14 h-14 bg-rose-100 flex items-center justify-center mx-auto text-rose-600">
-                <AlertCircle className="w-7 h-7" />
+            <div className="bg-rose-50/70 p-6 sm:p-8 border border-rose-200 shadow-sm space-y-5 sm:space-y-6 text-center">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-rose-100 flex items-center justify-center mx-auto text-rose-600">
+                <AlertCircle className="w-6 h-6 sm:w-7 sm:h-7" />
               </div>
               <div className="space-y-2 max-w-md mx-auto">
-                <h3 className="text-lg font-bold text-rose-950">Gagal Menerbitkan Sertifikat</h3>
-                <p className="text-xs text-rose-800 leading-relaxed font-mono bg-rose-100/60 p-3 border border-rose-200 text-left">
+                <h3 className="text-base sm:text-lg font-bold text-rose-950">Gagal Menerbitkan Sertifikat</h3>
+                <p className="text-xs text-rose-800 leading-relaxed font-mono bg-rose-100/60 p-3 border border-rose-200 text-left break-all">
                   {errorMessage}
                 </p>
               </div>
               <button
                 onClick={resetForm}
-                className="px-6 py-2.5 bg-neutral-900 text-white text-xs font-semibold hover:bg-neutral-800 transition cursor-pointer"
+                className="w-full sm:w-auto px-6 py-2.5 bg-neutral-900 text-white text-xs font-semibold hover:bg-neutral-800 transition cursor-pointer"
               >
                 Coba Lagi
               </button>
@@ -539,27 +539,35 @@ export default function Issue() {
 
           {/* SUCCESS STATE */}
           {processingState === 'success' && resultData && (
-            <div className="bg-white p-8 border border-neutral-200 shadow-lg space-y-6 animate-fade-in">
-              <div className="flex items-center gap-4 border-b border-neutral-100 pb-6">
-                <img src={iconVerified} alt="Verified" className="w-12 h-12" />
+            <div className="bg-white p-5 sm:p-8 border border-neutral-200 shadow-lg space-y-6 animate-fade-in">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 border-b border-neutral-100 pb-5 sm:pb-6">
+                <img src={iconVerified} alt="Verified" className="w-10 h-10 sm:w-12 sm:h-12 shrink-0" />
                 <div>
-                  <h3 className="text-2xl font-extrabold text-neutral-900">Certificate Issued Successfully!</h3>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-neutral-900">Certificate Issued Successfully!</h3>
                   <p className="text-xs text-neutral-500">Bukti penerbitan telah tersimpan di IPFS & Smart Contract Registry Sepolia.</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
-                <div className="p-4 bg-neutral-50 border border-neutral-200 space-y-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs font-mono">
+                <div className="p-3.5 sm:p-4 bg-neutral-50 border border-neutral-200 space-y-1">
                   <span className="text-neutral-400 block text-[10px]">CERTIFICATE ID</span>
-                  <span className="font-bold text-neutral-900 text-sm">{resultData.certId}</span>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-neutral-900 text-xs sm:text-sm truncate">{resultData.certId}</span>
+                    <button
+                      onClick={() => copyToClipboard(resultData.certId, 'success-id')}
+                      className="text-neutral-400 hover:text-neutral-600 cursor-pointer ml-2"
+                    >
+                      {copiedId === 'success-id' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
                 </div>
 
-                <div className="p-4 bg-neutral-50 border border-neutral-200 space-y-1">
+                <div className="p-3.5 sm:p-4 bg-neutral-50 border border-neutral-200 space-y-1">
                   <span className="text-neutral-400 block text-[10px]">RECIPIENT</span>
-                  <span className="font-bold text-neutral-900">{resultData.recipient}</span>
+                  <span className="font-bold text-neutral-900 truncate block">{resultData.recipient}</span>
                 </div>
 
-                <div className="p-4 bg-neutral-50 border border-neutral-200 space-y-1">
+                <div className="p-3.5 sm:p-4 bg-neutral-50 border border-neutral-200 space-y-1">
                   <span className="text-neutral-400 block text-[10px]">IPFS CID</span>
                   <a
                     href={`https://gateway.pinata.cloud/ipfs/${resultData.cid}`}
@@ -571,7 +579,7 @@ export default function Issue() {
                   </a>
                 </div>
 
-                <div className="p-4 bg-neutral-50 border border-neutral-200 space-y-1">
+                <div className="p-3.5 sm:p-4 bg-neutral-50 border border-neutral-200 space-y-1">
                   <span className="text-neutral-400 block text-[10px]">TRANSACTION HASH</span>
                   <a
                     href={`${ETHERSCAN_BASE_URL}/tx/${resultData.txHash}`}
@@ -585,32 +593,32 @@ export default function Issue() {
               </div>
 
               {/* Instant Download Action */}
-              <div className="p-4 bg-neutral-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="space-y-1">
+              <div className="p-4 bg-neutral-900 text-white flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+                <div className="space-y-0.5">
                   <div className="text-xs font-semibold">Final Certificate Ready</div>
                   <div className="text-[11px] text-neutral-400">Termasuk QR Code verifikasi terintegrasi</div>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={downloadProcessedCertificate}
-                    className="px-4 py-2 bg-emerald-500 text-neutral-950 font-semibold text-xs hover:bg-emerald-400 transition flex items-center gap-1.5 cursor-pointer shadow-sm"
+                    className="w-full sm:w-auto px-4 py-2 bg-emerald-500 text-neutral-950 font-semibold text-xs hover:bg-emerald-400 transition flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
                   >
                     <Download className="w-3.5 h-3.5" /> Download File Final
                   </button>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
+              <div className="pt-4 border-t border-neutral-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
                 <button
                   onClick={resetForm}
-                  className="px-5 py-2.5 bg-neutral-100 text-neutral-800 font-semibold text-xs hover:bg-neutral-200 transition inline-flex items-center gap-2 cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-2.5 bg-neutral-100 text-neutral-800 font-semibold text-xs hover:bg-neutral-200 transition inline-flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <RefreshCw className="w-3.5 h-3.5" /> Issue Certificate Lainnya
                 </button>
 
                 <a
                   href={`/verify?id=${resultData.certId}`}
-                  className="px-5 py-2.5 bg-neutral-900 text-white font-semibold text-xs hover:bg-neutral-800 transition inline-flex items-center gap-2 cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-2.5 bg-neutral-900 text-white font-semibold text-xs hover:bg-neutral-800 transition inline-flex items-center justify-center gap-2 cursor-pointer text-center"
                 >
                   Buka Halaman Verifikasi <ExternalLink className="w-3.5 h-3.5" />
                 </a>
@@ -620,9 +628,9 @@ export default function Issue() {
 
           {/* SECTION 2: MY CERTIFICATES (Real Blockchain Data) */}
           <div className="pt-6 border-t border-neutral-200 space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-extrabold text-neutral-900 tracking-tight flex items-center gap-2">
+                <h2 className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight flex items-center gap-2">
                   My Certificates
                   <span className="text-xs font-semibold px-2 py-0.5 bg-neutral-100 text-neutral-600 border border-neutral-200">
                     {certificates.length} On-Chain
@@ -634,19 +642,19 @@ export default function Issue() {
               </div>
 
               {/* Search & Filter Controls */}
-              <div className="flex flex-wrap items-center gap-2">
-                <div className="relative">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+                <div className="relative flex-1 sm:flex-none">
                   <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
                   <input
                     type="text"
                     placeholder="Cari ID, Nama, Judul..."
                     value={certSearch}
                     onChange={(e) => setCertSearch(e.target.value)}
-                    className="pl-8 pr-3 py-1.5 bg-white border border-neutral-200 text-xs text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 w-48 sm:w-56"
+                    className="pl-8 pr-3 py-1.5 bg-white border border-neutral-200 text-xs text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 w-full sm:w-52 md:w-56"
                   />
                 </div>
 
-                <div className="flex border border-neutral-200 bg-white text-xs">
+                <div className="grid grid-cols-3 border border-neutral-200 bg-white text-xs shrink-0 text-center">
                   <button
                     onClick={() => setFilterStatus('ALL')}
                     className={`px-3 py-1.5 font-medium transition cursor-pointer ${filterStatus === 'ALL' ? 'bg-neutral-900 text-white' : 'text-neutral-600 hover:bg-neutral-100'}`}
@@ -691,17 +699,17 @@ export default function Issue() {
                   return (
                     <div
                       key={cert.certId}
-                      className={`bg-white p-5 border transition-all hover:shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4 ${
+                      className={`bg-white p-4 sm:p-5 border transition-all hover:shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 ${
                         isRevoked ? 'border-rose-200/80 bg-rose-50/20' : 'border-neutral-200'
                       }`}
                     >
-                      <div className="space-y-2 flex-1">
+                      <div className="space-y-2 flex-1 min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="font-mono text-xs font-bold text-neutral-900 bg-neutral-100 px-2 py-0.5 border border-neutral-200 flex items-center gap-1.5">
-                            {cert.certId}
+                          <span className="font-mono text-xs font-bold text-neutral-900 bg-neutral-100 px-2 py-0.5 border border-neutral-200 flex items-center gap-1.5 max-w-full">
+                            <span className="truncate">{cert.certId}</span>
                             <button
                               onClick={() => copyToClipboard(cert.certId, cert.certId)}
-                              className="text-neutral-400 hover:text-neutral-700 cursor-pointer"
+                              className="text-neutral-400 hover:text-neutral-700 cursor-pointer shrink-0"
                               title="Copy ID"
                             >
                               {copiedId === cert.certId ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
@@ -709,11 +717,11 @@ export default function Issue() {
                           </span>
 
                           {isRevoked ? (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-rose-100 text-rose-800 text-[10px] font-bold tracking-wide uppercase border border-rose-200">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-rose-100 text-rose-800 text-[10px] font-bold tracking-wide uppercase border border-rose-200">
                               <Ban className="w-3 h-3" /> REVOKED
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold tracking-wide uppercase border border-emerald-200">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold tracking-wide uppercase border border-emerald-200">
                               <CheckCircle2 className="w-3 h-3" /> ACTIVE / VALID
                             </span>
                           )}
@@ -724,7 +732,7 @@ export default function Issue() {
                         </div>
 
                         <div>
-                          <h4 className="text-sm font-bold text-neutral-900">{cert.title}</h4>
+                          <h4 className="text-sm font-bold text-neutral-900 break-words">{cert.title}</h4>
                           <p className="text-xs text-neutral-600">
                             Recipient: <span className="font-semibold text-neutral-800">{cert.recipient}</span>
                           </p>
@@ -732,7 +740,7 @@ export default function Issue() {
                       </div>
 
                       {/* Actions */}
-                      <div className="flex items-center gap-2 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-neutral-100">
+                      <div className="flex flex-wrap items-center gap-2 shrink-0 pt-3 md:pt-0 border-t md:border-t-0 border-neutral-100">
                         <a
                           href={`/verify?id=${cert.certId}`}
                           className="px-3 py-1.5 bg-neutral-100 text-neutral-800 hover:bg-neutral-200 text-xs font-medium transition inline-flex items-center gap-1.5 cursor-pointer"
@@ -773,11 +781,11 @@ export default function Issue() {
       {/* REVOKE CONFIRMATION MODAL */}
       {revokeTarget && (
         <div className="fixed inset-0 z-50 bg-neutral-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white max-w-md w-full p-6 border border-neutral-300 shadow-2xl space-y-5 animate-fade-in">
+          <div className="bg-white max-w-md w-full p-5 sm:p-6 border border-neutral-300 shadow-2xl space-y-4 sm:space-y-5 animate-fade-in">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3 text-rose-600">
-                <div className="w-10 h-10 bg-rose-100 flex items-center justify-center">
-                  <AlertTriangle className="w-5 h-5" />
+                <div className="w-9 h-9 sm:w-10 sm:h-10 bg-rose-100 flex items-center justify-center shrink-0">
+                  <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-neutral-900">Revoke Certificate</h3>
@@ -786,14 +794,14 @@ export default function Issue() {
               </div>
               <button
                 onClick={() => setRevokeTarget(null)}
-                className="text-neutral-400 hover:text-neutral-600 cursor-pointer"
+                className="text-neutral-400 hover:text-neutral-600 cursor-pointer p-1"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="p-3 bg-neutral-50 border border-neutral-200 text-xs space-y-1.5 font-mono">
-              <div>
+              <div className="break-all">
                 <span className="text-neutral-400">ID:</span> <strong className="text-neutral-900">{revokeTarget.certId}</strong>
               </div>
               <div>
@@ -809,23 +817,23 @@ export default function Issue() {
             </p>
 
             {revokeError && (
-              <div className="p-3 bg-rose-50 border border-rose-200 text-xs text-rose-800">
+              <div className="p-3 bg-rose-50 border border-rose-200 text-xs text-rose-800 break-all">
                 {revokeError}
               </div>
             )}
 
-            <div className="pt-3 border-t border-neutral-100 flex items-center justify-end gap-2">
+            <div className="pt-3 border-t border-neutral-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2">
               <button
                 onClick={() => setRevokeTarget(null)}
                 disabled={isRevoking}
-                className="px-4 py-2 bg-neutral-100 text-neutral-700 text-xs font-semibold hover:bg-neutral-200 transition cursor-pointer"
+                className="px-4 py-2 bg-neutral-100 text-neutral-700 text-xs font-semibold hover:bg-neutral-200 transition cursor-pointer text-center"
               >
                 Batal
               </button>
               <button
                 onClick={handleConfirmRevoke}
                 disabled={isRevoking}
-                className="px-5 py-2 bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition flex items-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
+                className="px-5 py-2 bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
               >
                 {isRevoking ? (
                   <>

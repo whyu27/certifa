@@ -7,11 +7,11 @@ import { DOCS_URL } from '../config/contract';
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-neutral-200/80 mt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+    <footer className="bg-white border-t border-neutral-200/80 mt-14 sm:mt-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-10 sm:mb-12">
           {/* Brand Col */}
-          <div className="md:col-span-2 space-y-4 text-left">
+          <div className="sm:col-span-2 space-y-4 text-left">
             <div className="flex items-center gap-2.5">
               <img src={certifaLogo} alt="Certifa Logo" className="w-7 h-7 object-contain" />
               <span className="font-bold text-lg text-neutral-900 tracking-tight">Certifa</span>
@@ -21,7 +21,7 @@ export default function Footer() {
             </p>
 
             {/* Trust / Ecosystem Badges Section */}
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 flex flex-wrap items-center gap-2 sm:gap-3">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-100 border border-neutral-200/80 text-neutral-700 text-[11px] font-medium">
                 <img src={ethereumSepoliaBadge} alt="Ethereum Sepolia" className="w-4 h-4 opacity-80" />
                 <span>Ethereum Sepolia</span>
@@ -35,19 +35,19 @@ export default function Footer() {
 
           {/* Nav Col 1 */}
           <div className="text-left">
-            <h4 className="text-xs font-semibold text-neutral-900 uppercase tracking-wider mb-4">Product</h4>
+            <h4 className="text-xs font-semibold text-neutral-900 uppercase tracking-wider mb-3 sm:mb-4">Product</h4>
             <ul className="space-y-2.5 text-xs">
               <li><Link to="/" className="text-neutral-500 hover:text-neutral-900 transition">Features</Link></li>
               <li><Link to="/issue" className="text-neutral-500 hover:text-neutral-900 transition">Issue Certificate</Link></li>
               <li><Link to="/verify" className="text-neutral-500 hover:text-neutral-900 transition">Public Verification</Link></li>
-              <li><a href="#how-it-works" className="text-neutral-500 hover:text-neutral-900 transition">How It Works</a></li>
-              <li><a href="#technologies" className="text-neutral-500 hover:text-neutral-900 transition">Technologies</a></li>
+              <li><a href="/#how-it-works" className="text-neutral-500 hover:text-neutral-900 transition">How It Works</a></li>
+              <li><a href="/#technologies" className="text-neutral-500 hover:text-neutral-900 transition">Technologies</a></li>
             </ul>
           </div>
 
           {/* Nav Col 2 */}
           <div className="text-left">
-            <h4 className="text-xs font-semibold text-neutral-900 uppercase tracking-wider mb-4">Architecture</h4>
+            <h4 className="text-xs font-semibold text-neutral-900 uppercase tracking-wider mb-3 sm:mb-4">Architecture</h4>
             <ul className="space-y-2.5 text-xs">
               <li><span className="text-neutral-500">Smart Contract</span></li>
               <li><span className="text-neutral-500">Pinata IPFS Pinning</span></li>
@@ -58,7 +58,7 @@ export default function Footer() {
 
           {/* Nav Col 3 */}
           <div className="text-left">
-            <h4 className="text-xs font-semibold text-neutral-900 uppercase tracking-wider mb-4">Resources</h4>
+            <h4 className="text-xs font-semibold text-neutral-900 uppercase tracking-wider mb-3 sm:mb-4">Resources</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <a
@@ -95,7 +95,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-neutral-200/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
+        <div className="pt-6 sm:pt-8 border-t border-neutral-200/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400 text-center sm:text-left">
           <div>
             © {new Date().getFullYear()} Certifa Protocol. All rights reserved.
           </div>

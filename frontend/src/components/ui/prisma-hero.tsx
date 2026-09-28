@@ -27,25 +27,19 @@ export const PrismaHero = ({
   const isExternalSecondary = secondaryCtaLink.startsWith("http");
 
   return (
-    <section className="w-full mx-auto px-2 sm:px-4 pt-2">
+    <section className="w-full mx-auto px-3 sm:px-4 pt-2">
       <div className="relative w-full overflow-hidden bg-[#f4f4f5] border border-neutral-200/80 shadow-xs text-neutral-900">
 
-        {/* Top Bar: Brand Logo & Centered Pill Badge */}
-        <div className="flex items-center justify-between px-6 pt-6 sm:px-10 sm:pt-8">
-          {/* Right Spacer */}
-          <div className="w-16 hidden sm:block"></div>
-        </div>
-
         {/* Main Hero Header Text */}
-        <div className="max-w-6xl mx-auto px-6 pt-20 pb-2 text-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-2 text-center">
           {/* Main Headline */}
           <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-4xl sm:text-6xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.08] mb-4"
+            className="font-display text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.12] sm:leading-[1.08] mb-4"
           >
-            {titleLine1} <br />
+            {titleLine1} <br className="hidden sm:inline" />
             <span className="text-neutral-900">{titleLine2}</span>
           </motion.h1>
 
@@ -54,7 +48,7 @@ export const PrismaHero = ({
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans max-w-xl mx-auto text-neutral-600 text-xs sm:text-sm md:text-base leading-relaxed mb-8 font-normal"
+            className="font-sans max-w-xl mx-auto text-neutral-600 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 font-normal px-2"
           >
             {description}
           </motion.p>
@@ -64,11 +58,11 @@ export const PrismaHero = ({
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 max-w-xs sm:max-w-none mx-auto"
           >
             <Link
               to={primaryCtaLink}
-              className="px-6 py-3 bg-neutral-900 hover:bg-neutral-800 text-white text-xs sm:text-sm font-semibold transition shadow-md"
+              className="w-full sm:w-auto px-6 py-3 bg-neutral-900 hover:bg-neutral-800 text-white text-xs sm:text-sm font-semibold transition shadow-md text-center"
             >
               {primaryCtaText}
             </Link>
@@ -78,14 +72,14 @@ export const PrismaHero = ({
                 href={secondaryCtaLink}
                 target="_blank"
                 rel="noreferrer"
-                className="px-6 py-3 bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300/80 text-xs sm:text-sm font-semibold transition shadow-xs flex items-center gap-1.5"
+                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300/80 text-xs sm:text-sm font-semibold transition shadow-xs flex items-center justify-center gap-1.5"
               >
                 {secondaryCtaText} <span className="text-neutral-400">&gt;</span>
               </a>
             ) : (
               <Link
                 to={secondaryCtaLink}
-                className="px-6 py-3 bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300/80 text-xs sm:text-sm font-semibold transition shadow-xs flex items-center gap-1.5"
+                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300/80 text-xs sm:text-sm font-semibold transition shadow-xs flex items-center justify-center gap-1.5"
               >
                 {secondaryCtaText} <span className="text-neutral-400">&gt;</span>
               </Link>
@@ -94,9 +88,9 @@ export const PrismaHero = ({
         </div>
 
         {/* Bottom Background Image (hero-section.jpg) with Mist/Cloud Fog Effect */}
-        <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] overflow-hidden">
+        <div className="relative w-full h-[180px] xs:h-[220px] sm:h-[300px] md:h-[380px] overflow-hidden">
           {/* Top Gradient Blend */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#f4f4f5] via-[#f4f4f5]/20 to-transparent z-10 pointer-events-none h-20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f4f4f5] via-[#f4f4f5]/20 to-transparent z-10 pointer-events-none h-16 sm:h-20" />
 
           <img
             src={heroBg}
@@ -115,7 +109,7 @@ export const PrismaHero = ({
               viewBox="0 0 1440 180"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-20 sm:h-28 md:h-32 text-white"
+              className="w-full h-16 sm:h-24 md:h-32 text-white"
               preserveAspectRatio="none"
             >
               {/* Back Cloud Layer */}
@@ -140,7 +134,7 @@ export const PrismaHero = ({
           </div>
 
           {/* LAYER 3: Smooth Bottom Mist Gradient to pure white */}
-          <div className="absolute bottom-0 inset-x-0 h-24 sm:h-32 bg-gradient-to-t from-white via-white/80 to-transparent z-20 pointer-events-none" />
+          <div className="absolute bottom-0 inset-x-0 h-16 sm:h-24 md:h-32 bg-gradient-to-t from-white via-white/80 to-transparent z-20 pointer-events-none" />
           <div className="absolute bottom-0 inset-x-0 h-3 bg-white z-20 pointer-events-none" />
         </div>
 
