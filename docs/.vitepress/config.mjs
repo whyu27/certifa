@@ -68,7 +68,7 @@ export default defineConfig({
       ]
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/khilman/certifa' }
+      { icon: 'github', link: 'https://github.com/whyu27' }
     ],
     footer: {
       message: 'Released under the MIT License.',

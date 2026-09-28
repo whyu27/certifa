@@ -80,7 +80,16 @@ export default function Footer() {
                   Official Docs <ExternalLink className="w-3 h-3" />
                 </a>
               </li>
-              <li><span className="text-neutral-500">Help Center</span></li>
+              <li>
+                <a
+                  href="https://github.com/whyu27"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-neutral-500 hover:text-neutral-900 transition"
+                >
+                  GitHub <ExternalLink className="w-3 h-3" />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
