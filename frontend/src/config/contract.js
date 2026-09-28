@@ -7,6 +7,7 @@ export const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com';
 export const ETHERSCAN_BASE_URL = 'https://sepolia.etherscan.io';
 export const IPFS_GATEWAY_URL = 'https://gateway.pinata.cloud/ipfs';
 export const BACKEND_URL = 'http://localhost:5000/api';
+export const DOCS_URL = 'http://localhost:5174';
 
 export const CONTRACT_ABI = parseAbi([
   'function isAuthorizedIssuer(address _issuer) external view returns (bool)',

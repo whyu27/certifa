@@ -3,6 +3,7 @@ import ethereumSepoliaBadge from '../assets/ethereum-sepolia-badge.png';
 import ipfsBadge from '../assets/ipfs-badge.svg';
 import certifaLogo from '../assets/logo-certifa.svg';
 import { ExternalLink, Code } from 'lucide-react';
+import { DOCS_URL } from '../config/contract';
 
 export default function Footer() {
   return (
@@ -69,7 +70,16 @@ export default function Footer() {
                   Sepolia Explorer <ExternalLink className="w-3 h-3" />
                 </a>
               </li>
-              <li><span className="text-neutral-500">PRD Documentation</span></li>
+              <li>
+                <a
+                  href={DOCS_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-neutral-500 hover:text-neutral-900 transition"
+                >
+                  Official Docs <ExternalLink className="w-3 h-3" />
+                </a>
+              </li>
               <li><span className="text-neutral-500">Help Center</span></li>
             </ul>
           </div>

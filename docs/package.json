@@ -4,7 +4,7 @@
   "description": "Official Documentation for Certifa - Blockchain-Based Certificate Verification Platform",
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev",
+    "dev": "vitepress dev --port 5174",
     "build": "vitepress build",
     "preview": "vitepress preview"
   },

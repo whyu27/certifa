@@ -11,6 +11,7 @@ import wagmiSvg from '../assets/tech/wagmi.svg';
 import reactSvg from '../assets/tech/react.svg';
 import typescriptSvg from '../assets/tech/typescript.svg';
 import tailwindSvg from '../assets/tech/tailwind.svg';
+import { DOCS_URL } from '../config/contract';
 
 const stackLayers = [
   {
@@ -1256,12 +1257,14 @@ export default function Home() {
             >
               Launch App
             </Link>
-            <Link
-              to="/verify"
-              className="px-6 py-3 bg-white border border-neutral-300 text-neutral-800 font-medium text-xs sm:text-sm hover:bg-neutral-50 transition"
+            <a
+              href={DOCS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="px-6 py-3 bg-white border border-neutral-300 text-neutral-800 font-medium text-xs sm:text-sm hover:bg-neutral-50 transition inline-flex items-center gap-1.5"
             >
               Certifa Docs &gt;
-            </Link>
+            </a>
           </div>
         </div>
       </motion.section>
