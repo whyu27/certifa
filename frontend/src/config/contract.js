@@ -1,13 +1,13 @@
 import { createPublicClient, http, parseAbi } from 'viem';
 import { sepolia } from 'viem/chains';
 
-export const CONTRACT_ADDRESS = '0xAFC8bB36572ac3CcEa6c908dC8D26cd54E9c258a';
+export const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || '0xAFC8bB36572ac3CcEa6c908dC8D26cd54E9c258a';
 export const SEPOLIA_CHAIN_ID = 11155111;
-export const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com';
-export const ETHERSCAN_BASE_URL = 'https://sepolia.etherscan.io';
-export const IPFS_GATEWAY_URL = 'https://gateway.pinata.cloud/ipfs';
-export const BACKEND_URL = 'http://localhost:5000/api';
-export const DOCS_URL = 'http://localhost:5174';
+export const SEPOLIA_RPC_URL = import.meta.env.VITE_SEPOLIA_RPC_URL || 'https://ethereum-sepolia-rpc.publicnode.com';
+export const ETHERSCAN_BASE_URL = import.meta.env.VITE_ETHERSCAN_BASE_URL || 'https://sepolia.etherscan.io';
+export const IPFS_GATEWAY_URL = import.meta.env.VITE_IPFS_GATEWAY_URL || 'https://gateway.pinata.cloud/ipfs';
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/api';
+export const DOCS_URL = import.meta.env.VITE_DOCS_URL || 'http://localhost:5174';
 
 export const CONTRACT_ABI = parseAbi([
   'function isAuthorizedIssuer(address _issuer) external view returns (bool)',
