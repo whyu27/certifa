@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-section.jpg";
+import { DOCS_URL } from "@/config/contract";
 
 interface PrismaHeroProps {
   brandName?: string;
@@ -21,8 +22,10 @@ export const PrismaHero = ({
   primaryCtaText = "Launch App",
   primaryCtaLink = "/issue",
   secondaryCtaText = "Certifa Docs",
-  secondaryCtaLink = "/verify",
+  secondaryCtaLink = DOCS_URL,
 }: PrismaHeroProps) => {
+  const isExternalSecondary = secondaryCtaLink.startsWith("http");
+
   return (
     <section className="w-full mx-auto px-2 sm:px-4 pt-2">
       <div className="relative w-full overflow-hidden bg-[#f4f4f5] border border-neutral-200/80 shadow-xs text-neutral-900">
@@ -70,12 +73,23 @@ export const PrismaHero = ({
               {primaryCtaText}
             </Link>
 
-            <Link
-              to={secondaryCtaLink}
-              className="px-6 py-3 bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300/80 text-xs sm:text-sm font-semibold transition shadow-xs flex items-center gap-1.5"
-            >
-              {secondaryCtaText} <span className="text-neutral-400">&gt;</span>
-            </Link>
+            {isExternalSecondary ? (
+              <a
+                href={secondaryCtaLink}
+                target="_blank"
+                rel="noreferrer"
+                className="px-6 py-3 bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300/80 text-xs sm:text-sm font-semibold transition shadow-xs flex items-center gap-1.5"
+              >
+                {secondaryCtaText} <span className="text-neutral-400">&gt;</span>
+              </a>
+            ) : (
+              <Link
+                to={secondaryCtaLink}
+                className="px-6 py-3 bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-300/80 text-xs sm:text-sm font-semibold transition shadow-xs flex items-center gap-1.5"
+              >
+                {secondaryCtaText} <span className="text-neutral-400">&gt;</span>
+              </Link>
+            )}
           </motion.div>
         </div>
 
